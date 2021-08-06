@@ -1,0 +1,26 @@
+{
+	"Create Solid Component": {
+		"scope": "javascript,javascriptreact",
+		"prefix": "csl",
+		"body": [
+            "//Next, React (core node_modules) imports must be placed here",
+            "",
+            "//Styles must be imported here",
+            "import styles from './${TM_DIRECTORY/^.+\\/(.*)$/${1:/capitalize}/}.module.scss'",
+            "",
+            "//Components must be imported here",
+			"",
+			"const ${TM_DIRECTORY/^.+\\/(.*)$/${1:/capitalize}/}Layout = ({children, ...props}) => {",
+			"\treturn (",
+			"\t\t<div className={styles.container}>",
+			"\t\t\t{children}${0}",
+			"\t\t</div>",
+			"\t)",
+			"};",
+			"",
+			"export default ${TM_DIRECTORY/^.+\\/(.*)$/${1:/capitalize}/}Layout;",
+
+		],
+		"description": "Creates a React Layout High Order Component"
+	}
+}

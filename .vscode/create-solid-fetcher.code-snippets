@@ -1,0 +1,26 @@
+{
+	"Create Solid Fetcher": {
+		"scope": "javascript",
+		"prefix": "csf",
+		"body": [
+			"//SWR & 'FETCHER UTILITY' IMPORTS",
+			"import useSWR from 'swr';",
+            "import { getFetcher } from '../utils/fetchers';",
+			"",
+			"//Others must be imported here",
+			"",
+			"export const $TM_FILENAME_BASE = () => {",
+            "\tconst { data, error } = useSWR('/api/${0}', getFetcher);",
+			"\treturn {",
+            "\t\t${TM_FILENAME_BASE/\\use+(.*)/${1:/downcase}/}: data,",
+            "\t\tisLoading: !error && !data,",
+            "\t\tisError: error",
+			"\t}",
+			"};",
+			"",
+			"export default $TM_FILENAME_BASE;",
+
+		],
+		"description": "Creates SWR fetcher"
+	}
+}
