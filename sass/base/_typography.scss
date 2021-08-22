@@ -1,5 +1,46 @@
-// TYPOGRAPHY
+@import "../utilities/variables";
 
+// TYPOGRAPHY
 body {
-    font-size: 1.6rem; //16px;
+  font-size: 1.6rem; //16px;
+  font-family: $font-sans;
+}
+
+h1,
+h2,
+h3,
+h4,
+li,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: 2.25em;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: 1.5em;
+  font-weight: 400;
+  text-transform: capitalize;
+}
+
+h3 {
+  font-size: 1em;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+h4 {
+  font-size: 1em;
+  font-weight: 400;
+  text-transform: capitalize;
+}
+
+p, li {
+  font-size: 1em;
+  font-weight: 300;
 }

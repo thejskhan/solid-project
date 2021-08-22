@@ -4,6 +4,6 @@ module.exports = {
   reactStrictMode: true,
   sassOptions: {
     // Making it easier to import variables & mixins via _global.scss;
-    includePaths: [path.join(__dirname, "sass")]
+    includePaths: [path.join(__dirname, "sass")],
   },
-}
+};

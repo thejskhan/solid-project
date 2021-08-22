@@ -1,0 +1,12 @@
+{
+	"Respond to max-width": {
+		"scope": "scss",
+		"prefix": "rmax",
+		"body": [
+			"@include respondMax($1){",
+			"\t$0",
+			"}",
+		],
+		"description": "Includes `respondMax` mixin that creates a max-width media query"
+	}
+}

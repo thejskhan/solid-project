@@ -15,7 +15,5 @@ The `layouts` directory is used for containing directories of layouts.
 Let's assume that we have a layout named `Default`.
 
 layouts/Default folder must exist.
-
 layouts/Default/index.jsx file must exist.
-
 layouts/Default/Default.module.scss file must exist.

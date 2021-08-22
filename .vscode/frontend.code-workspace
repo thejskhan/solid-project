@@ -1,0 +1,52 @@
+{
+  "folders": [
+    {
+      "path": "..",
+      "name": "root"
+    },
+    {
+      "path": "../components",
+      "name": "Components"
+    },
+    {
+      "path": "../views",
+      "name": "Page Sections"
+    },
+    {
+      "path": "../pages",
+      "name": "Page Routes"
+    },
+    {
+      "path": "../layouts",
+      "name": "Layouts"
+    },
+    {
+      "path": "../sass",
+      "name": "Global Styles"
+    },
+    {
+      "path": "../tools",
+      "name": "Fetchers"
+    },
+  ],
+  "settings": {
+    "explorer.sortOrder": "type",
+    "explorer.sortOrderLexicographicOptions": "upper",
+    "explorer.autoReveal": false,
+    "problems.autoReveal": false,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "[javascript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascriptreact]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[scss]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "emmet.includeLanguages": {
+      "javascript": "javascriptreact",
+      "javascriptreact": "javascriptreact"
+    }
+  }
+}

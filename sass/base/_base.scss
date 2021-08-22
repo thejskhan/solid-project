@@ -1,10 +1,14 @@
-// NORMALIZATION
+@import "../utilities/variables";
+@import "../utilities/mixins";
+@import "../utilities/functions";
 
+// NORMALIZATION
 html {
-    font-size: 62.5%; //1rem = 10px;
+  font-size: 62.5%; //1rem = 10px;
 }
 
-html, body {
-    margin: 0;
-    padding: 0;
+html,
+body {
+  margin: 0;
+  padding: 0;
 }
