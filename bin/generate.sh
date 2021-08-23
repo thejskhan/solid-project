@@ -40,7 +40,7 @@ then
         echo -e "${bold}${green}CREATING THE LAYOUT ${yellow}SCSS FILE${reset} \t\tat ${underline}layouts/$componentName/$componentName.module.scss${reset}"
         touch layouts/$componentName/$componentName.module.scss
 
-        echo "atimport 'global';" >> layouts/$componentName/$componentName.module.scss
+        echo "@import 'global';" >> layouts/$componentName/$componentName.module.scss
         echo "" >> layouts/$componentName/$componentName.module.scss
         echo ".container {" >> layouts/$componentName/$componentName.module.scss
         echo "" >> layouts/$componentName/$componentName.module.scss
@@ -133,7 +133,7 @@ then
         echo -e "${bold}${green}CREATING THE VIEW ${yellow}SCSS FILE${reset} \t\tat ${underline}views/$directoryName/$componentName/$componentName.module.scss${reset}"
         touch views/$directoryName/$componentName/$componentName.module.scss
 
-        echo "atimport 'global';" >> views/$directoryName/$componentName/$componentName.module.scss
+        echo "@import 'global';" >> views/$directoryName/$componentName/$componentName.module.scss
         echo "" >> views/$directoryName/$componentName/$componentName.module.scss
         echo ".container {" >> views/$directoryName/$componentName/$componentName.module.scss
         echo "" >> views/$directoryName/$componentName/$componentName.module.scss
@@ -178,7 +178,7 @@ then
         echo -e "${bold}${green}CREATING THE COMPONENT ${yellow}SCSS FILE${reset} \tat ${underline}components/$componentName/$componentName.module.scss${reset}"
         touch components/$componentName/$componentName.module.scss
 
-        echo "atimport 'global';" >> components/$componentName/$componentName.module.scss
+        echo "@import 'global';" >> components/$componentName/$componentName.module.scss
         echo "" >> components/$componentName/$componentName.module.scss
         echo ".container {" >> components/$componentName/$componentName.module.scss
         echo "" >> components/$componentName/$componentName.module.scss
