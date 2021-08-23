@@ -28,19 +28,19 @@ then
 
     if [ ! -d "layouts/$componentName" ]
     then
-        echo -e "${bold}${green}CREATING THE LAYOUT ${yellow}DIRECTORY${reset} \t\t@ ${underline}layouts/$componentName${reset}"
+        echo -e "${bold}${green}CREATING THE LAYOUT ${yellow}DIRECTORY${reset} \t\tat ${underline}layouts/$componentName${reset}"
         mkdir layouts/$componentName
     fi
 
     if [[ ! -f "layouts/$componentName/index.jsx" && ! -f "layouts/$componentName/$componentName.module.scss" ]]
     then
-        echo -e "${bold}${green}CREATING THE LAYOUT ${yellow}REACT COMPONENT${reset} \t@ ${underline}layouts/$componentName/index.js${reset}"
+        echo -e "${bold}${green}CREATING THE LAYOUT ${yellow}REACT COMPONENT${reset} \tat ${underline}layouts/$componentName/index.js${reset}"
         touch layouts/$componentName/index.jsx
 
-        echo -e "${bold}${green}CREATING THE LAYOUT ${yellow}SCSS FILE${reset} \t\t@ ${underline}layouts/$componentName/$componentName.module.scss${reset}"
+        echo -e "${bold}${green}CREATING THE LAYOUT ${yellow}SCSS FILE${reset} \t\tat ${underline}layouts/$componentName/$componentName.module.scss${reset}"
         touch layouts/$componentName/$componentName.module.scss
 
-        echo "@import 'global';" >> layouts/$componentName/$componentName.module.scss
+        echo "atimport 'global';" >> layouts/$componentName/$componentName.module.scss
         echo "" >> layouts/$componentName/$componentName.module.scss
         echo ".container {" >> layouts/$componentName/$componentName.module.scss
         echo "" >> layouts/$componentName/$componentName.module.scss
@@ -74,13 +74,13 @@ then
 
     if [ ! -d "pages/$componentName" ]
     then
-        echo -e "${bold}${green}CREATING THE PAGE ${yellow}DIRECTORY${reset} \t\t@ ${underline}pages/$componentName${reset}"
+        echo -e "${bold}${green}CREATING THE PAGE ${yellow}DIRECTORY${reset} \t\tat ${underline}pages/$componentName${reset}"
         mkdir pages/$componentName
     fi
 
     if [ ! -f "pages/$componentName/index.jsx" ]
     then
-        echo -e "${bold}${green}CREATING THE PAGE ${yellow}REACT COMPONENT${reset} \t@ ${underline}pages/$componentName${reset}"
+        echo -e "${bold}${green}CREATING THE PAGE ${yellow}REACT COMPONENT${reset} \tat ${underline}pages/$componentName${reset}"
         touch pages/$componentName/index.jsx
 
         echo "//Next, React (core node_modules) imports must be placed here" >> pages/$componentName/index.jsx
@@ -104,7 +104,7 @@ then
         echo "" >> pages/$componentName/index.jsx
         echo "export default ${componentName}Page;" >> pages/$componentName/index.jsx
     else
-        echo -e "${bold}${magenta}FILE ALREADY EXIST${reset} @ ${underline}pages/$componentName${reset}"
+        echo -e "${bold}${magenta}FILE ALREADY EXIST${reset} at ${underline}pages/$componentName${reset}"
     fi
 
 # GENERATE VIEW
@@ -118,22 +118,22 @@ then
 
     if [ ! -d "views/$directoryName" ]
     then
-        echo -e "${bold}${green}CREATING A${reset} ${bold}PAGE VIEW ${yellow}DIRECTORY${reset} \t\t@ ${underline}views/$directoryName${reset}"
+        echo -e "${bold}${green}CREATING A${reset} ${bold}PAGE VIEW ${yellow}DIRECTORY${reset} \t\tat ${underline}views/$directoryName${reset}"
         mkdir views/$directoryName
     fi
 
     if [ ! -d "views/$directoryName/$componentName" ]
     then
-        echo -e "${bold}${green}CREATING THE VIEW ${yellow}DIRECTORY${reset} \t\t@ ${underline}views/$directoryName/$componentName${reset}"
+        echo -e "${bold}${green}CREATING THE VIEW ${yellow}DIRECTORY${reset} \t\tat ${underline}views/$directoryName/$componentName${reset}"
         mkdir views/$directoryName/$componentName
 
-        echo -e "${bold}${green}CREATING THE VIEW ${yellow}REACT COMPONENT${reset} \t@ ${underline}views/$directoryName/$componentName/index.jsx${reset}"
+        echo -e "${bold}${green}CREATING THE VIEW ${yellow}REACT COMPONENT${reset} \tat ${underline}views/$directoryName/$componentName/index.jsx${reset}"
         touch views/$directoryName/$componentName/index.jsx
 
-        echo -e "${bold}${green}CREATING THE VIEW ${yellow}SCSS FILE${reset} \t\t@ ${underline}views/$directoryName/$componentName/$componentName.module.scss${reset}"
+        echo -e "${bold}${green}CREATING THE VIEW ${yellow}SCSS FILE${reset} \t\tat ${underline}views/$directoryName/$componentName/$componentName.module.scss${reset}"
         touch views/$directoryName/$componentName/$componentName.module.scss
 
-        echo "@import 'global';" >> views/$directoryName/$componentName/$componentName.module.scss
+        echo "atimport 'global';" >> views/$directoryName/$componentName/$componentName.module.scss
         echo "" >> views/$directoryName/$componentName/$componentName.module.scss
         echo ".container {" >> views/$directoryName/$componentName/$componentName.module.scss
         echo "" >> views/$directoryName/$componentName/$componentName.module.scss
@@ -166,19 +166,19 @@ then
 
     if [ ! -d "components/$componentName" ]
     then
-        echo -e "${bold}${green}CREATING THE COMPONENT ${yellow}DIRECTORY${reset} \t@ ${underline}components/$componentName${reset}"
+        echo -e "${bold}${green}CREATING THE COMPONENT ${yellow}DIRECTORY${reset} \tat ${underline}components/$componentName${reset}"
         mkdir components/$componentName
     fi
 
     if [[ ! -f "components/$componentName/index.jsx" && ! -f "components/$componentName/$componentName.module.scss" ]]
     then
-        echo -e "${bold}${green}CREATING THE ${yellow}REACT COMPONENT${reset} \t\t@ ${underline}components/$componentName/index.jsx${reset}"
+        echo -e "${bold}${green}CREATING THE ${yellow}REACT COMPONENT${reset} \t\tat ${underline}components/$componentName/index.jsx${reset}"
         touch components/$componentName/index.jsx
 
-        echo -e "${bold}${green}CREATING THE COMPONENT ${yellow}SCSS FILE${reset} \t@ ${underline}components/$componentName/$componentName.module.scss${reset}"
+        echo -e "${bold}${green}CREATING THE COMPONENT ${yellow}SCSS FILE${reset} \tat ${underline}components/$componentName/$componentName.module.scss${reset}"
         touch components/$componentName/$componentName.module.scss
 
-        echo "@import 'global';" >> components/$componentName/$componentName.module.scss
+        echo "atimport 'global';" >> components/$componentName/$componentName.module.scss
         echo "" >> components/$componentName/$componentName.module.scss
         echo ".container {" >> components/$componentName/$componentName.module.scss
         echo "" >> components/$componentName/$componentName.module.scss
@@ -202,6 +202,83 @@ then
         echo "${bold}${magenta}FILES ALREADY EXIST${reset} at ${underline}components/$componentName/index.jsx${reset} or ${underline}components/$componentName/$componentName.module.scss${reset}"
     fi
 
+# GENERATE API
+elif [ "$1" = "api" ]
+then
+    componentNameConstructor=$(echo ${2:0:1} | tr 'a-z' 'A-Z')${2:1}
+    componentName=$componentNameConstructor
+
+    if [ ! -d "pages/api/$componentName" ]
+    then
+        echo -e "${bold}${green}CREATING THE API ${yellow}DIRECTORY${reset} \tat ${underline}pages/api/$componentName${reset}"
+        mkdir pages/api/$componentName
+    fi
+
+    if [ ! -f "pages/api/$componentName/index.js" ]
+    then
+        echo -e "${bold}${green}CREATING THE API ${yellow}HANDLER${reset} \tat ${underline}pages/api/$componentName/index.js${reset}"
+        touch pages/api/$componentName/index.js
+
+        echo "//IMPORT UTILITIES HERE" >> pages/api/$componentName/index.js
+        echo "" >> pages/api/$componentName/index.js
+        echo "//IMPORT MODELS HERE" >> pages/api/$componentName/index.js
+        echo "" >> pages/api/$componentName/index.js
+        echo "export default async (req, res) => {" >> pages/api/$componentName/index.js
+        echo "" >> pages/api/$componentName/index.js
+        echo -e "\tif (req.method === 'GET') {" >> pages/api/$componentName/index.js
+        echo -e "\t\t//return res.status(200).send()" >> pages/api/$componentName/index.js
+        echo -e "\t}" >> pages/api/$componentName/index.js
+        echo "" >> pages/api/$componentName/index.js
+        echo -e "\tif (req.method === 'POST') {" >> pages/api/$componentName/index.js
+        echo -e "\t\t//return res.status(200).send()" >> pages/api/$componentName/index.js
+        echo -e "\t}" >> pages/api/$componentName/index.js
+        echo "}" >> pages/api/$componentName/index.js
+
+    else
+        echo "${bold}${magenta}FILE ALREADY EXIST${reset} at ${underline}pages/api/$componentName/index.js${reset}"
+    fi
+
+# GENERATE MODEL
+elif [ "$1" = "model" ]
+then
+    componentNameConstructor=$(echo ${2:0:1} | tr 'a-z' 'A-Z')${2:1}
+    componentName=$componentNameConstructor
+
+    if [ ! -f "models/$componentName.js" ]
+    then
+        echo -e "${bold}${green}CREATING THE MODEL ${yellow}FILE${reset} \tat ${underline}models/$componentName${reset}"
+        touch models/$componentName.js
+
+        echo "// import { connectToDatabase } from '../utils/database';" >> models/$componentName.js
+        echo "" >> models/$componentName.js
+        echo "class $componentName {" >> models/$componentName.js
+        echo -e "\tconstructor() {" >> models/$componentName.js
+        echo -e "\t}" >> models/$componentName.js
+        echo "}" >> models/$componentName.js
+        echo "" >> models/$componentName.js
+        echo "export default $componentName;" >> models/$componentName.js
+
+    else
+        echo "${bold}${magenta}FILE ALREADY EXIST${reset} at ${underline}models/$componentName.js${reset}"
+    fi
+
+# GENERATE ENV
+elif [ "$1" = "env" ]
+then
+
+    if [ ! -f ".env.local" ]
+    then
+        echo -e "${bold}${green}CREATING LOCAL ${yellow}ENVIRONMENT VARIABLE${reset} \tat ${underline}.env.local${reset}"
+        touch .env.local
+
+        echo "MONGODB_URI=" >> .env.local
+        echo "MONGODB_DB=" >> .env.local
+
+    else
+        echo "${bold}${magenta}ENVIRONMENT VARIABLE ALREADY EXISTS${reset} at ${underline}.env.local${reset}"
+    fi
+
+
 # HELP
 else
     echo "${cyan}${bold}SOLID FRAMEWORKS${reset} ${underline}Generate${reset}"
@@ -217,4 +294,10 @@ else
     echo ""
     echo "${bold}Component${reset}"
     echo "${green}${bold}npm run ${underline}generate${reset} component ${yellow}ComponentName${reset}"
+    echo ""
+    echo "${bold}API${reset}"
+    echo "${green}${bold}npm run ${underline}generate${reset} api ${yellow}APINAME${reset}"
+    echo ""
+    echo "${bold}Model${reset}"
+    echo "${green}${bold}npm run ${underline}generate${reset} model ${yellow}ModelName${reset}"
 fi

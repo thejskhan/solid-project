@@ -1,0 +1,25 @@
+{
+	"Create Solid API Handler": {
+		"scope": "javascript",
+		"prefix": "csa",
+		"body": [
+			"//IMPORT UTILITIES HERE",
+			"",
+            "//IMPORT MODELS HERE",
+            "",
+			"export default async (req, res) => {",
+            "",
+			"\tif (req.method === 'GET') {",
+            "\t\t//return res.status(200).send()",
+			"\t}",
+            "",
+            "\tif (req.method === 'GET') {",
+            "\t\t//return res.status(200).send()",
+			"\t}",
+            "",
+			"}",
+
+		],
+		"description": "Creates an API Handler"
+	}
+}

@@ -5,26 +5,6 @@
       "name": "root"
     },
     {
-      "path": "../components",
-      "name": "Components"
-    },
-    {
-      "path": "../views",
-      "name": "Page Sections"
-    },
-    {
-      "path": "../pages",
-      "name": "Page Routes"
-    },
-    {
-      "path": "../layouts",
-      "name": "Layouts"
-    },
-    {
-      "path": "../sass",
-      "name": "Global Styles"
-    },
-    {
       "path": "../tools",
       "name": "Fetchers (tools)"
     },
