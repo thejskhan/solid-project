@@ -1,34 +1,29 @@
 {
-	"Create Solid Component": {
-		"scope": "javascript,javascriptreact",
-		"prefix": "csp",
-		"body": [
-			"//Next, React (core node_modules) imports must be placed here",
-            "",
-            "//Styles must be impoerted here",
-			"//import styles from '../PATH/TO/sass/templates/STYLES.module.scss'",
-            "import styles from '${0}'",
-            "",
-			"//Fetchers must be imported here",
-			"//import useFETCHER from '../PATH/TO/tools/useFETCHER'",
-			"",
-			"//Layout must be imported here",
-			"//import LAYOUT from '../PATH/TO/layouts/LAYOUT'",
-			"",
-            "//Component must be imported here",
-			"//import COMPONENT from '../PATH/TO/components/COMPONENT'",
-			"",
-			"const ${TM_DIRECTORY/^.+\\/(.*)$/${1:/capitalize}/}${2}Page = (props) => {",
-			"\treturn (",
-			"\t\t<main className={styles.container}>",
-			"\t\t\t",
-			"\t\t</main>",
-			"\t)",
-			"};",
-			"",
-			"export default ${TM_DIRECTORY/^.+\\/(.*)$/${1:/capitalize}/}${2}Page;",
-
-		],
-		"description": "Creates a Next Page"
-	}
+  "Create Solid Component": {
+    "scope": "javascript,javascriptreact",
+    "prefix": "csp",
+    "body": [
+      "//Next, React (core node_modules) imports must be placed here",
+      "",
+      "//Fetchers must be imported here",
+      "//import useFETCHER from '../PATH/TO/tools/useFETCHER'",
+      "",
+      "//Layout must be imported here",
+      "//import LAYOUT from '../PATH/TO/layouts/LAYOUT'",
+      "",
+      "//Component must be imported here",
+      "//import COMPONENT from '../PATH/TO/components/COMPONENT'",
+      "",
+      "const ${TM_DIRECTORY/^.+\\/(.*)$/${1:/capitalize}/}${2}Page = (props) => {",
+      "\treturn (",
+      "\t\t<main>",
+      "\t\t\t",
+      "\t\t</main>",
+      "\t)",
+      "};",
+      "",
+      "export default ${TM_DIRECTORY/^.+\\/(.*)$/${1:/capitalize}/}${2}Page;"
+    ],
+    "description": "Creates a Next Page"
+  }
 }
