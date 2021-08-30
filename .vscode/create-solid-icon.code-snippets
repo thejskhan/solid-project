@@ -1,0 +1,16 @@
+{
+  "Create Solid Icon": {
+    "scope": "javascript,javascriptreact",
+    "prefix": "csi",
+    "body": [
+      "import { $1 } from '@styled-icons/$2'",
+      "",
+      "const Styled$1 = styled($1)`",
+      "\twidth: $0;",
+      "\tcolor: ;",
+      "\tmargin: ;",
+      "`;",
+    ],
+    "description": "Creates an Icon from styled-icons"
+  }
+}
