@@ -11,4 +11,12 @@ html,
 body {
   margin: 0;
   padding: 0;
+
+  .dark {
+    background-color: $clr-neutral-6;
+  }
+
+  .light {
+    background-color: $clr-neutral-0;
+  }
 }

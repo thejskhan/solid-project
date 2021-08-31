@@ -19,30 +19,30 @@ $clr-primary: #03c4a1;
 $clr-secondary: #f69765;
 
 // GREYSCALE (Darkest to Lightest)
-$clr-6: #222831;
-$clr-5: #4e535a;
-$clr-4: #64696f;
-$clr-3: #7a7e83;
-$clr-2: #919498;
-$clr-1: #d2d3d3;
-$clr-0: #efefef;
+$clr-neutral-6: #222831;
+$clr-neutral-5: #4e535a;
+$clr-neutral-4: #64696f;
+$clr-neutral-3: #7a7e83;
+$clr-neutral-2: #919498;
+$clr-neutral-1: #d2d3d3;
+$clr-neutral-0: #efefef;
 
 // THEMES
 $themes: (
   light: (
-    clr-bg: $clr-0,
+    clr-bg: $clr-neutral-0,
     clr-h1: $clr-primary,
     clr-h2: $clr-secondary,
-    clr-h3: $clr-4,
-    clr-h4: $clr-6,
-    clr-text: $clr-5,
+    clr-h3: $clr-neutral-4,
+    clr-h4: $clr-neutral-6,
+    clr-text: $clr-neutral-5,
   ),
   dark: (
-    clr-bg: $clr-6,
+    clr-bg: $clr-neutral-6,
     clr-h1: $clr-primary,
     clr-h2: $clr-secondary,
-    clr-h3: $clr-2,
-    clr-h4: $clr-0,
-    clr-text: $clr-1,
+    clr-h3: $clr-neutral-2,
+    clr-h4: $clr-neutral-0,
+    clr-text: $clr-neutral-1,
   ),
 );
