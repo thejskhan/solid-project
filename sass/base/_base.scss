@@ -11,12 +11,50 @@ html,
 body {
   margin: 0;
   padding: 0;
+}
 
-  .dark {
-    background-color: $clr-neutral-6;
+::selection {
+  color: $clr-primary;
+  background-color: #000;
+}
+
+input,
+textarea {
+  @include baseThemify() {
+    color: has(clr-text);
   }
+}
 
-  .light {
-    background-color: $clr-neutral-0;
+button {
+  border: .1rem solid transparent;
+  cursor: pointer;
+
+  @include baseThemify() {
+    color: has(clr-text-inverse);
+    background-color: has(clr-bg-inverse);
+  }
+}
+
+button:focus,
+a:focus {
+  outline: 0 none;
+  @include baseThemify() {
+    border-color: has(clr-bg-inverse);
+  }
+}
+
+textarea:focus,
+input:focus,
+input[type]:focus,
+.uneditable-input:focus {
+  border-color: $clr-primary;
+  outline: 0 none;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  text-transform: capitalize;
+  @include baseThemify() {
+    color: has(clr-text-lc);
   }
 }

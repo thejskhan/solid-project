@@ -4,15 +4,10 @@
 body {
   font-size: 1.6rem; //16px;
   font-family: $font-sans;
-
   font-weight: 300;
 
-  .dark {
-    color: $clr-neutral-1;
-  }
-
-  .light {
-    color: $clr-neutral-5;
+  @include respondMax(sm){
+    font-weight: 400;
   }
 }
 
@@ -33,6 +28,10 @@ h1 {
 
   @include baseThemify() {
     color: has(clr-h1);
+  }
+
+  @include respondMax(sm){
+    letter-spacing: normal;
   }
 }
 

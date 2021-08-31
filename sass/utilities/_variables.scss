@@ -30,19 +30,31 @@ $clr-neutral-0: #efefef;
 // THEMES
 $themes: (
   light: (
+    clr-select: #fff,
     clr-bg: $clr-neutral-0,
+    clr-bg-inverse: $clr-neutral-6,
     clr-h1: $clr-primary,
     clr-h2: $clr-secondary,
     clr-h3: $clr-neutral-4,
+    clr-h3-inverse: $clr-neutral-2,
     clr-h4: $clr-neutral-6,
+    clr-h4-inverse: $clr-neutral-0,
     clr-text: $clr-neutral-5,
+    clr-text-inverse: $clr-neutral-1,
+    clr-text-lc: $clr-neutral-1,
   ),
   dark: (
+    clr-select: #000,
     clr-bg: $clr-neutral-6,
+    clr-bg-inverse: $clr-neutral-0,
     clr-h1: $clr-primary,
     clr-h2: $clr-secondary,
     clr-h3: $clr-neutral-2,
+    clr-h3-inverse: $clr-neutral-4,
     clr-h4: $clr-neutral-0,
+    clr-h4-inverse: $clr-neutral-6,
     clr-text: $clr-neutral-1,
+    clr-text-inverse: $clr-neutral-5,
+    clr-text-lc: $clr-neutral-5,
   ),
 );

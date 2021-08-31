@@ -1,0 +1,10 @@
+{
+	"Themify": {
+		"scope": "scss",
+		"prefix": "has",
+		"body": [
+			"has($0)",
+		],
+		"description": "has function"
+	}
+}
