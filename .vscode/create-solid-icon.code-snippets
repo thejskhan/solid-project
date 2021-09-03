@@ -3,14 +3,14 @@
     "scope": "javascript,javascriptreact",
     "prefix": "csi",
     "body": [
-      "import { $1 } from '@styled-icons/$2'",
+      "const IconWrapper = (Icon) => {",
+      "\tconst StyledIcon = styled(Icon)`",
+      "\t\t$0",
+      "\t`;",
       "",
-      "const Styled$1 = styled($1)`",
-      "\twidth: $0;",
-      "\tcolor: ;",
-      "\tmargin: ;",
-      "`;",
+      "\treturn <StyledIcon />;",
+      "};"
     ],
-    "description": "Creates an Icon from styled-icons"
+    "description": "Creates an Icon Wrapper"
   }
 }
