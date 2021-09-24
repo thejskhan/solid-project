@@ -1,7 +1,3 @@
-@import "../utilities/variables";
-@import "../utilities/mixins";
-@import "../utilities/functions";
-
 // NORMALIZATION
 html {
   font-size: 62.5%; //1rem = 10px;
@@ -18,15 +14,15 @@ body {
   background-color: #000;
 }
 
-input,
-textarea {
+:where(input, textarea) {
+  border: 0.1rem solid $clr-neutral-1;
   @include baseThemify() {
     color: has(clr-text);
   }
 }
 
-button {
-  border: .1rem solid transparent;
+:where(button) {
+  border: 0.1rem solid transparent;
   cursor: pointer;
 
   @include baseThemify() {
@@ -35,24 +31,19 @@ button {
   }
 }
 
-button:focus,
-a:focus {
+:where(button:focus, a:focus) {
   outline: 0 none;
   @include baseThemify() {
     border-color: has(clr-bg-inverse);
   }
 }
 
-textarea:focus,
-input:focus,
-input[type]:focus,
-.uneditable-input:focus {
+:where(textarea:focus, input:focus, input[type]:focus, .uneditable-input:focus) {
   border-color: $clr-primary;
   outline: 0 none;
 }
 
-input::-webkit-input-placeholder,
-textarea::-webkit-input-placeholder {
+:where(input::-webkit-input-placeholder, textarea::-webkit-input-placeholder) {
   text-transform: capitalize;
   @include baseThemify() {
     color: has(clr-text-lc);

@@ -1,3 +1,7 @@
 @function has($key) {
-  @return map-get($theme-map, $key);
+  @if $theme-map {
+    @return map-get($theme-map, $key);
+  } @else {
+    @return map-get($breakpoints, $key)
+  }
 }
