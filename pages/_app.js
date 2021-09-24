@@ -1,31 +1,27 @@
-import Head from "next/head";
+import { Fragment } from "react";
 
-import ThemeLayout from "../layouts/Theme";
+import { Provider } from "next-auth/client";
 
-import { ThemeContextProvider } from "../store/ThemeContext";
+import ThemeLayout from "@/layouts/Theme";
 
-import "../sass/app.scss";
+import { ThemeContextProvider } from "@/store/ThemeContext";
 
-const App = ({ Component, pageProps }) => {
+import "@/sass/app.scss";
+
+const App = ({ Component, pageProps: { session, ...pageProps } }) => {
+  const Layout = Component.Layout ? Component.Layout : Fragment;
   return (
-    <ThemeContextProvider>
-      <Head>
-        {/* IMPORTING TYPOGRAPHY */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin=""
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400&family=Fira+Sans:wght@300;400&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
-      <ThemeLayout>
-        <Component {...pageProps} />
-      </ThemeLayout>
-    </ThemeContextProvider>
+    <Provider session={session}>
+      <ThemeContextProvider>
+        <ThemeLayout>
+          {
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          }
+        </ThemeLayout>
+      </ThemeContextProvider>
+    </Provider>
   );
 };
 
