@@ -2,16 +2,16 @@
     "compilerOptions": {
       "baseUrl": ".",
       "paths": {
-        "@/components/*": ["components/*"],
-        "@/composites/*": ["composites/*"],
-        "@/layouts/*": ["layouts/*"],
-        "@/models/*": ["models/*"],
-        "@/public/*": ["public/*"],
-        "@/sass/*": ["sass/*"],
-        "@/store/*": ["store/*"],
-        "@/tools/*": ["tools/*"],
-        "@/utils/*": ["utils/*"],
-        "@/views/*": ["views/*"]
+        "@/components/*": ["@/components/*"],
+        "@/composites/*": ["@/composites/*"],
+        "@/layouts/*": ["@/layouts/*"],
+        "@/models/*": ["@/models/*"],
+        "@/public/*": ["@/public/*"],
+        "@/sass/*": ["@/sass/*"],
+        "@/store/*": ["@/store/*"],
+        "@/tools/*": ["@/tools/*"],
+        "@/utils/*": ["@/utils/*"],
+        "@/views/*": ["@/views/*"]
       }
     },
     "exclude": ["node_modules"]
