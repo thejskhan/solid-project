@@ -72,7 +72,6 @@ CreateComponentTo() {
 
     if [[ "$3" != "component" ]] && [[ "$3" != "composite" ]] && [[ "$3" != "view" ]] && [[ "$3" != "layout" ]]
     then
-        echo $3
         PrintTo $1 "//import LAYOUT from '@/layouts'"
         PrintTo $1
     fi
@@ -154,13 +153,13 @@ CreateStoreTo() {
     PrintTo $1 "\t"
     PrintTo $1 "});"
     PrintTo $1
-    PrintTo $1 "export const $2ContextProvider = (props) => {"
+    PrintTo $1 "export const $2ContextProvider = ({children, ...props}) => {"
     PrintTo $1
     PrintTo $1 "\tconst context = {};"
     PrintTo $1
     PrintTo $1 "\treturn ("
     PrintTo $1 "\t\t<$2Context.Provider value={context}>"
-    PrintTo $1 "\t\t\t{props.children}"
+    PrintTo $1 "\t\t\t{children}"
     PrintTo $1 "\t\t</$2Context.Provider>"
     PrintTo $1 "\t);"
     PrintTo $1 "};"
