@@ -1,8 +1,10 @@
-import ThemeToggler from "../components/ThemeToggler";
+import ThemeToggler from "@/components/ThemeToggler";
+
+import styles from "./Root.module.scss";
 
 const RootPage = (props) => {
   return (
-    <main>
+    <main className={styles.container}>
       <h1>Hello World!</h1>
       <ThemeToggler />
       <h1>THIS IS HEADING 1</h1>

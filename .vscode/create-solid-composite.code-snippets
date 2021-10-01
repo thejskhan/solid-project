@@ -1,11 +1,13 @@
 {
-	"Create Solid Component": {
+	"Create Solid Component Composite": {
 		"scope": "javascript,javascriptreact",
-		"prefix": "csc",
+		"prefix": "cscc",
 		"body": [
 			"//Next, React (core node_modules) imports must be placed here",
 			"",
 			"//import STORE from '@/store'",
+			"",
+			"//import COMPONENT from '@/components'",
 			"",
 			"//Styles must be imported here",
 			"import styles from './${TM_DIRECTORY/^.+\\/(.*)$/${1:/pascalcase}/}${2}.module.scss'",
@@ -20,6 +22,6 @@
 			"export default ${TM_DIRECTORY/^.+\\/(.*)$/${1:/pascalcase}/}${2};",
 
 		],
-		"description": "Creates a React Component"
+		"description": "Creates a React Component built from other Components"
 	}
 }

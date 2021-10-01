@@ -11,6 +11,13 @@ yellow=`tput setaf 3`
 magenta=`tput setaf 5`
 cyan=`tput setaf 6`
 
+#TPUT BACKGROUND COLORS
+textbg=`tput setab 0`
+greenbg=`tput setab 2`
+yellowbg=`tput setab 3`
+magentabg=`tput setab 5`
+cyanbg=`tput setab 6`
+
 # TPUT TEXT
 bold=`tput bold`
 underline=`tput smul`
@@ -19,187 +26,294 @@ underline=`tput smul`
 reset=`tput sgr0`
 # ---------------------
 
+PrintTo () {
+    echo -e $2 >> $1
+}
+
+WarnFilesExist() {
+    if [ "$2" != "" ]
+    then
+        echo -e "${bold}${magenta}FILES ALREADY EXIST${reset} at ${underline}$1${reset} or ${underline}$2${reset}"
+    else
+        echo -e "${bold}${magenta}FILE ALREADY EXIST${reset} at ${underline}$1${reset}"
+    fi
+}
+
+AnnounceCreation() {
+    typeName=$(echo $1 | tr [:lower:] [:upper:])
+    echo -e "${bold}${green}CREATING THE $typeName ${yellow}$2${reset} \n@ ${underline}$3${reset}\n"
+}
+
+CreateScssTo() {
+    touch $1
+
+    PrintTo $1 "@import 'global';"
+    PrintTo $1
+    PrintTo $1 ".container {"
+    PrintTo $1
+    PrintTo $1 "}"
+}
+
+CreateComponentTo() {
+    IFS='-' read -ra names <<< "$2"
+    for i in "${names[@]}"; do
+        nameConstructor=${nameConstructor}$(echo ${i:0:1} | tr 'a-z' 'A-Z')${i:1}
+    done
+
+    touch $1
+
+    extention=$(echo ${3:0:1} | tr 'a-z' 'A-Z')${3:1}
+
+    PrintTo $1 "//Next, React (core node_modules) imports must be placed here"
+    PrintTo $1
+
+    PrintTo $1 "//import STORE from '@/store'"
+    PrintTo $1
+
+    if [[ "$3" != "component" ]] && [[ "$3" != "composite" ]] && [[ "$3" != "view" ]] && [[ "$3" != "layout" ]]
+    then
+        echo $3
+        PrintTo $1 "//import LAYOUT from '@/layouts'"
+        PrintTo $1
+    fi
+    
+    if [[ "$3" != "component" && "$3" != "composite" && "$3" != "view" ]]
+    then
+        PrintTo $1 "//import VIEWS from '@/views'"
+        PrintTo $1
+        PrintTo $1 "//import useFETCHER from '@/tools'"
+        PrintTo $1
+    fi
+
+    if [[ "$3" != "component" && "$3" != "composite" ]]
+    then
+        PrintTo $1 "//import COMPOSITES from '@/composites'"
+        PrintTo $1
+    fi
+    
+    if [ "$3" != "component" ]
+    then
+        PrintTo $1 "//import COMPONENT from '@/components'"
+        PrintTo $1
+    fi
+
+    PrintTo $1 "import styles from './$2.module.scss'"
+    PrintTo $1
+
+    
+    if [ "$3" = "layout" ]
+    then
+        PrintTo $1 "const $nameConstructor$extention = ({children, ...props}) => {"
+    elif [ "$3" = "page" ]
+    then
+        PrintTo $1 "const $nameConstructor$extention = (props) => {"
+    else
+        PrintTo $1 "const $nameConstructor = (props) => {"
+    fi
+
+    PrintTo $1 "\t return ("
+
+    if [ "$3" = "page" ]
+    then
+        PrintTo $1 "\t\t <main className={styles.container}>"
+    else
+        PrintTo $1 "\t\t <div className={styles.container}>"
+    fi
+
+    if [ "$3" = "layout" ]
+    then
+        PrintTo $1 "\t\t\t{children}"
+    else
+        PrintTo $1 "\t\t\t"
+    fi
+
+
+    if [ "$3" = "page" ]
+    then
+        PrintTo $1 "\t\t</main>"
+    else
+        PrintTo $1 "\t\t</div>"
+    fi
+
+    PrintTo $1 "\t)"
+    PrintTo $1 "};"
+    PrintTo $1
+    
+    if [ "$3" = "layout" ] || [ "$3" = "page" ]
+    then
+        PrintTo $1 "export default $nameConstructor$extention;"
+    else
+        PrintTo $1 "export default $nameConstructor;"
+    fi
+}
+
+CreateStoreTo() {
+    PrintTo $1 "import { createContext, useState } from 'react';"
+    PrintTo $1
+    PrintTo $1 "const $2Context = createContext({"
+    PrintTo $1 "\t"
+    PrintTo $1 "});"
+    PrintTo $1
+    PrintTo $1 "export const $2ContextProvider = (props) => {"
+    PrintTo $1
+    PrintTo $1 "\tconst context = {};"
+    PrintTo $1
+    PrintTo $1 "\treturn ("
+    PrintTo $1 "\t\t<$2Context.Provider value={context}>"
+    PrintTo $1 "\t\t\t{props.children}"
+    PrintTo $1 "\t\t</$2Context.Provider>"
+    PrintTo $1 "\t);"
+    PrintTo $1 "};"
+    PrintTo $1
+    PrintTo $1 "export default $2Context;"
+}
 
 # GENERATE LAYOUT
 if [ "$1" = "layout" ]
 then
-    componentNameConstructor=$(echo ${2:0:1} | tr 'a-z' 'A-Z')${2:1}
-    componentName=$componentNameConstructor
+    componentName=$(echo ${2:0:1} | tr 'a-z' 'A-Z')${2:1}
+    componentDirName=layouts/$componentName
+    componentJSDirName=$componentDirName/index.jsx
+    componentSCSSDirName=$componentDirName/$componentName.module.scss
 
-    if [ ! -d "layouts/$componentName" ]
+    if [ ! -d $componentDirName ]
     then
-        echo -e "${bold}${green}CREATING THE LAYOUT ${yellow}DIRECTORY${reset} \t\tat ${underline}layouts/$componentName${reset}"
-        mkdir layouts/$componentName
+        AnnounceCreation $1 DIRECTORY $componentDirName
+        mkdir $componentDirName
     fi
 
-    if [[ ! -f "layouts/$componentName/index.jsx" && ! -f "layouts/$componentName/$componentName.module.scss" ]]
+    if [[ ! -f $componentJSDirName && ! -f $componentSCSSDirName ]]
     then
-        echo -e "${bold}${green}CREATING THE LAYOUT ${yellow}REACT COMPONENT${reset} \tat ${underline}layouts/$componentName/index.js${reset}"
-        touch layouts/$componentName/index.jsx
+        AnnounceCreation $1 SCSS $componentSCSSDirName
+        CreateScssTo $componentSCSSDirName layout
 
-        echo -e "${bold}${green}CREATING THE LAYOUT ${yellow}SCSS FILE${reset} \t\tat ${underline}layouts/$componentName/$componentName.module.scss${reset}"
-        touch layouts/$componentName/$componentName.module.scss
-
-        echo "@import 'global';" >> layouts/$componentName/$componentName.module.scss
-        echo "" >> layouts/$componentName/$componentName.module.scss
-        echo ".container {" >> layouts/$componentName/$componentName.module.scss
-        echo "" >> layouts/$componentName/$componentName.module.scss
-        echo "}" >> layouts/$componentName/$componentName.module.scss
-
-        echo "//Next, React (core node_modules) imports must be placed here" >> layouts/$componentName/index.jsx
-        echo "" >> layouts/$componentName/index.jsx
-        echo "//Styles must be imported here" >> layouts/$componentName/index.jsx
-        echo "import styles from './$componentName.module.scss'" >> layouts/$componentName/index.jsx
-        echo "" >> layouts/$componentName/index.jsx
-        echo "//Components must be imported here" >> layouts/$componentName/index.jsx
-        echo "" >> layouts/$componentName/index.jsx
-        echo "const ${componentName}Layout = ({children, ...props}) => {" >> layouts/$componentName/index.jsx
-        echo -e "\t return (" >> layouts/$componentName/index.jsx
-        echo -e "\t\t <div className={styles.container}>" >> layouts/$componentName/index.jsx
-        echo -e "\t\t\t{children}" >> layouts/$componentName/index.jsx
-        echo -e "\t\t</div>" >> layouts/$componentName/index.jsx
-        echo -e "\t)" >> layouts/$componentName/index.jsx
-        echo "};" >> layouts/$componentName/index.jsx
-        echo "" >> layouts/$componentName/index.jsx
-        echo "export default ${componentName}Layout;" >> layouts/$componentName/index.jsx
+        AnnounceCreation $1 COMPONENT $componentJSDirName
+        CreateComponentTo $componentJSDirName $componentName layout
     else
-        echo -e "${bold}${magenta}FILES ALREADY EXIST${reset} at ${underline}layouts/$componentName/index.jsx${reset} or ${underline}layouts/$componentName/$componentName.module.scss${reset}"
+        WarnFilesExist $componentJSDirName $componentSCSSDirName
     fi
 
 # GENERATE PAGE
 elif [ "$1" = "page" ]
 then
-    componentNameConstructor=$(echo ${2:0:1} | tr 'a-z' 'A-Z')${2:1}
-    componentName=$componentNameConstructor
+    componentName=$2
+    componentDirName=pages/$componentName
+    componentJSDirName=$componentDirName/index.jsx
+    componentSCSSDirName=$componentDirName/$componentName.module.scss
 
-    if [ ! -d "pages/$componentName" ]
+
+    if [ ! -d $componentDirName ]
     then
-        echo -e "${bold}${green}CREATING THE PAGE ${yellow}DIRECTORY${reset} \t\tat ${underline}pages/$componentName${reset}"
-        mkdir pages/$componentName
+        AnnounceCreation $1 DIRECTORY $componentDirName
+        mkdir $componentDirName
     fi
 
-    if [ ! -f "pages/$componentName/index.jsx" ]
+    if [[ ! -f $componentJSDirName && ! -f $componentSCSSDirName ]]
     then
-        echo -e "${bold}${green}CREATING THE PAGE ${yellow}REACT COMPONENT${reset} \tat ${underline}pages/$componentName${reset}"
-        touch pages/$componentName/index.jsx
+        AnnounceCreation $1 SCSS $componentSCSSDirName
+        CreateScssTo $componentSCSSDirName page
 
-        echo "//Next, React (core node_modules) imports must be placed here" >> pages/$componentName/index.jsx
-        echo "" >> pages/$componentName/index.jsx
-        echo "//Fetchers must be imported here" >> pages/$componentName/index.jsx
-        echo "//import useFETCHER from '../PATH/TO/tools/useFETCHER'" >> pages/$componentName/index.jsx
-        echo "" >> pages/$componentName/index.jsx
-        echo "//Layout must be imported here" >> pages/$componentName/index.jsx
-        echo "//import LAYOUT from '../PATH/TO/layouts/LAYOUT'" >> pages/$componentName/index.jsx
-        echo "" >> pages/$componentName/index.jsx
-        echo "//Component must be imported here" >> pages/$componentName/index.jsx
-        echo "//import COMPONENT from '../PATH/TO/components/COMPONENT'" >> pages/$componentName/index.jsx
-        echo "" >> pages/$componentName/index.jsx
-        echo "const ${componentName}Page = (props) => {" >> pages/$componentName/index.jsx
-        echo -e "\treturn (" >> pages/$componentName/index.jsx
-        echo -e "\t\t<main>" >> pages/$componentName/index.jsx
-        echo -e "\t\t\t" >> pages/$componentName/index.jsx
-        echo -e "\t\t</main>" >> pages/$componentName/index.jsx
-        echo -e "\t)" >> pages/$componentName/index.jsx
-        echo "};" >> pages/$componentName/index.jsx
-        echo "" >> pages/$componentName/index.jsx
-        echo "export default ${componentName}Page;" >> pages/$componentName/index.jsx
+        AnnounceCreation $1 COMPONENT $componentJSDirName
+        CreateComponentTo $componentJSDirName $componentName page
     else
-        echo -e "${bold}${magenta}FILE ALREADY EXIST${reset} at ${underline}pages/$componentName${reset}"
+        WarnFilesExist $componentJSDirName $componentSCSSDirName
     fi
 
 # GENERATE VIEW
 elif [[ "$1" = "view" && "$3" != "" ]]
 then
-    directoryNameConstructor=$(echo ${2:0:1} | tr 'a-z' 'A-Z')${2:1}
-    directoryName=$directoryNameConstructor
+    componentParentName=$(echo ${2:0:1} | tr 'a-z' 'A-Z')${2:1}
+    componentName=$(echo ${3:0:1} | tr 'a-z' 'A-Z')${3:1}
+    componentParentDirName=views/$componentParentName
+    componentDirName=$componentParentDirName/$componentName
+    componentJSDirName=$componentDirName/index.jsx
+    componentSCSSDirName=$componentDirName/$componentName.module.scss
 
-    componentNameConstructor=$(echo ${3:0:1} | tr 'a-z' 'A-Z')${3:1}
-    componentName=$componentNameConstructor
-
-    if [ ! -d "views/$directoryName" ]
+    if [ ! -d $componentParentDirName ]
     then
-        echo -e "${bold}${green}CREATING A${reset} ${bold}PAGE VIEW ${yellow}DIRECTORY${reset} \t\tat ${underline}views/$directoryName${reset}"
-        mkdir views/$directoryName
+        AnnounceCreation $1 "PARENT DIRECTORY" $componentParentDirName
+        mkdir $componentParentDirName
     fi
 
-    if [ ! -d "views/$directoryName/$componentName" ]
+    if [ ! -d $componentDirName ]
     then
-        echo -e "${bold}${green}CREATING THE VIEW ${yellow}DIRECTORY${reset} \t\tat ${underline}views/$directoryName/$componentName${reset}"
-        mkdir views/$directoryName/$componentName
+        AnnounceCreation $1 DIRECTORY $componentDirName
+        mkdir $componentDirName
+    fi
 
-        echo -e "${bold}${green}CREATING THE VIEW ${yellow}REACT COMPONENT${reset} \tat ${underline}views/$directoryName/$componentName/index.jsx${reset}"
-        touch views/$directoryName/$componentName/index.jsx
+    if [[ ! -f $componentJSDirName && ! -f $componentSCSSDirName ]]
+    then
+        AnnounceCreation $1 SCSS $componentSCSSDirName
+        CreateScssTo $componentSCSSDirName view
 
-        echo -e "${bold}${green}CREATING THE VIEW ${yellow}SCSS FILE${reset} \t\tat ${underline}views/$directoryName/$componentName/$componentName.module.scss${reset}"
-        touch views/$directoryName/$componentName/$componentName.module.scss
-
-        echo "@import 'global';" >> views/$directoryName/$componentName/$componentName.module.scss
-        echo "" >> views/$directoryName/$componentName/$componentName.module.scss
-        echo ".container {" >> views/$directoryName/$componentName/$componentName.module.scss
-        echo "" >> views/$directoryName/$componentName/$componentName.module.scss
-        echo "}" >> views/$directoryName/$componentName/$componentName.module.scss
-
-        echo "//Next, React (core node_modules) imports must be placed here" >> views/$directoryName/$componentName/index.jsx
-        echo "" >> views/$directoryName/$componentName/index.jsx
-        echo "//Styles must be imported here" >> views/$directoryName/$componentName/index.jsx
-        echo "import styles from './$componentName.module.scss';" >> views/$directoryName/$componentName/index.jsx
-        echo "" >> views/$directoryName/$componentName/index.jsx
-        echo "// Components must be imported here" >> views/$directoryName/$componentName/index.jsx
-        echo "" >> views/$directoryName/$componentName/index.jsx
-        echo "const $componentName = (props) => {" >> views/$directoryName/$componentName/index.jsx
-        echo -e "\treturn (" >> views/$directoryName/$componentName/index.jsx
-        echo -e "\t\t<div className={styles.container}>" >> views/$directoryName/$componentName/index.jsx
-        echo -e "\t\t</div>" >> views/$directoryName/$componentName/index.jsx
-        echo -e "\t)" >> views/$directoryName/$componentName/index.jsx
-        echo "};" >> views/$directoryName/$componentName/index.jsx
-        echo "" >> views/$directoryName/$componentName/index.jsx
-        echo "export default $componentName;" >> views/$directoryName/$componentName/index.jsx
+        AnnounceCreation $1 COMPONENT $componentJSDirName
+        CreateComponentTo $componentJSDirName $componentName view
     else
-        echo "${bold}${magenta}THE VIEW DIRECTORY ALREADY EXIST${reset} at ${underline}views/$directoryName/$componentName${reset}"
+        WarnFilesExist $componentJSDirName $componentSCSSDirName
     fi
+
+# GENERATE COMPOSITE
+elif [ "$1" = "composite" ]
+then
+    componentName=$(echo ${2:0:1} | tr 'a-z' 'A-Z')${2:1}
+    componentDirName=composites/$componentName
+    componentJSDirName=$componentDirName/index.jsx
+    componentSCSSDirName=$componentDirName/$componentName.module.scss
+
+    if [ ! -d $componentDirName ]
+    then
+        AnnounceCreation $1 DIRECTORY $componentDirName
+        mkdir $componentDirName
+    fi
+
+    if [[ ! -f $componentJSDirName && ! -f $componentSCSSDirName ]]
+    then
+        AnnounceCreation $1 SCSS $componentSCSSDirName
+        CreateScssTo $componentSCSSDirName composite
+
+        AnnounceCreation $1 COMPONENT $componentJSDirName
+        CreateComponentTo $componentJSDirName $componentName composite
+    else
+        WarnFilesExist $componentJSDirName $componentSCSSDirName
+    fi
+
 
 # GENERATE COMPONENT
 elif [ "$1" = "component" ]
 then
-    componentNameConstructor=$(echo ${2:0:1} | tr 'a-z' 'A-Z')${2:1}
-    componentName=$componentNameConstructor
+    componentName=$(echo ${2:0:1} | tr 'a-z' 'A-Z')${2:1}
+    componentDirName=components/$componentName
+    componentJSDirName=$componentDirName/index.jsx
+    componentSCSSDirName=$componentDirName/$componentName.module.scss
 
-    if [ ! -d "components/$componentName" ]
+    if [ ! -d $componentDirName ]
     then
-        echo -e "${bold}${green}CREATING THE COMPONENT ${yellow}DIRECTORY${reset} \tat ${underline}components/$componentName${reset}"
-        mkdir components/$componentName
+        AnnounceCreation $1 DIRECTORY $componentDirName
+        mkdir $componentDirName
     fi
 
-    if [[ ! -f "components/$componentName/index.jsx" && ! -f "components/$componentName/$componentName.module.scss" ]]
+    if [[ ! -f $componentJSDirName && ! -f $componentSCSSDirName ]]
     then
-        echo -e "${bold}${green}CREATING THE ${yellow}REACT COMPONENT${reset} \t\tat ${underline}components/$componentName/index.jsx${reset}"
-        touch components/$componentName/index.jsx
+        AnnounceCreation $1 SCSS $componentSCSSDirName
+        CreateScssTo $componentSCSSDirName component
 
-        echo -e "${bold}${green}CREATING THE COMPONENT ${yellow}SCSS FILE${reset} \tat ${underline}components/$componentName/$componentName.module.scss${reset}"
-        touch components/$componentName/$componentName.module.scss
-
-        echo "@import 'global';" >> components/$componentName/$componentName.module.scss
-        echo "" >> components/$componentName/$componentName.module.scss
-        echo ".container {" >> components/$componentName/$componentName.module.scss
-        echo "" >> components/$componentName/$componentName.module.scss
-        echo "}" >> components/$componentName/$componentName.module.scss
-
-        echo "//Next, React (core node_modules) imports must be placed here" >> components/$componentName/index.jsx
-        echo "" >> components/$componentName/index.jsx
-        echo "//Styles must be imported here" >> components/$componentName/index.jsx
-        echo "import styles from './$componentName.module.scss'" >> components/$componentName/index.jsx
-        echo "" >> components/$componentName/index.jsx
-        echo "const ${componentName} = (props) => {" >> components/$componentName/index.jsx
-        echo -e "\t return (" >> components/$componentName/index.jsx
-        echo -e "\t\t <div className={styles.container}>" >> components/$componentName/index.jsx
-        echo "" >> components/$componentName/index.jsx
-        echo -e "\t\t</div>" >> components/$componentName/index.jsx
-        echo -e "\t)" >> components/$componentName/index.jsx
-        echo "};" >> components/$componentName/index.jsx
-        echo "" >> components/$componentName/index.jsx
-        echo "export default ${componentName};" >> components/$componentName/index.jsx
+        AnnounceCreation $1 COMPONENT $componentJSDirName
+        CreateComponentTo $componentJSDirName $componentName component
     else
-        echo "${bold}${magenta}FILES ALREADY EXIST${reset} at ${underline}components/$componentName/index.jsx${reset} or ${underline}components/$componentName/$componentName.module.scss${reset}"
+        WarnFilesExist $componentJSDirName
+    fi
+
+elif [ "$1" = "store" ]
+then
+    componentName=$(echo ${2:0:1} | tr 'a-z' 'A-Z')${2:1}
+    componentJSDirName=store/$componentName.jsx
+
+    if [ ! -f $componentJSDirName ]
+    then
+        AnnounceCreation $1 $componentName $componentJSDirName
+        CreateStoreTo $componentJSDirName $componentName
+    else
+        WarnFilesExist $componentJSDirName
     fi
 
 # GENERATE API
@@ -262,42 +376,15 @@ then
         echo "${bold}${magenta}FILE ALREADY EXIST${reset} at ${underline}models/$componentName.js${reset}"
     fi
 
-# GENERATE ENV
-elif [ "$1" = "env" ]
-then
-
-    if [ ! -f ".env.local" ]
-    then
-        echo -e "${bold}${green}CREATING LOCAL ${yellow}ENVIRONMENT VARIABLE${reset} \tat ${underline}.env.local${reset}"
-        touch .env.local
-
-        echo "MONGODB_URI=" >> .env.local
-        echo "MONGODB_DB=" >> .env.local
-
-    else
-        echo "${bold}${magenta}ENVIRONMENT VARIABLE ALREADY EXISTS${reset} at ${underline}.env.local${reset}"
-    fi
-
-
 # HELP
 else
     echo "${cyan}${bold}SOLID FRAMEWORKS${reset} ${underline}Generate${reset}"
-    echo ""
-    echo "${bold}Layout${reset}"
-    echo "${green}${bold}npm run ${underline}generate${reset} layout ${yellow}LayoutName${reset}"
-    echo ""
-    echo "${bold}Page${reset}"
-    echo "${green}${bold}npm run ${underline}generate${reset} page ${yellow}PageName${reset}"
-    echo ""
-    echo "${bold}View${reset}"
-    echo "${green}${bold}npm run ${underline}generate${reset} view ${yellow}PageName ViewName${reset}"
-    echo ""
-    echo "${bold}Component${reset}"
-    echo "${green}${bold}npm run ${underline}generate${reset} component ${yellow}ComponentName${reset}"
-    echo ""
-    echo "${bold}API${reset}"
-    echo "${green}${bold}npm run ${underline}generate${reset} api ${yellow}APINAME${reset}"
-    echo ""
-    echo "${bold}Model${reset}"
-    echo "${green}${bold}npm run ${underline}generate${reset} model ${yellow}ModelName${reset}"
+    echo -e "${green}${bold}npm run ${underline}generate${reset} ${bold}store${reset}\t\t ${yellow}StoreName${reset}"
+    echo -e "${green}${bold}npm run ${underline}generate${reset} ${bold}layout${reset}\t\t ${yellow}LayoutName${reset}"
+    echo -e "${green}${bold}npm run ${underline}generate${reset} ${bold}page${reset}\t\t ${yellow}PageName${reset}"
+    echo -e "${green}${bold}npm run ${underline}generate${reset} ${bold}view${reset}\t\t PageName\t ${yellow}ViewName${reset}"
+    echo -e "${green}${bold}npm run ${underline}generate${reset} ${bold}composite${reset}\t ${yellow}ComponentName${reset}"
+    echo -e "${green}${bold}npm run ${underline}generate${reset} ${bold}component${reset}\t ${yellow}ComponentName${reset}"
+    echo -e "${green}${bold}npm run ${underline}generate${reset} ${bold}api${reset}\t\t ${yellow}APIName${reset}"
+    echo -e "${green}${bold}npm run ${underline}generate${reset} ${bold}model${reset}\t\t ${yellow}ModelName${reset}"
 fi

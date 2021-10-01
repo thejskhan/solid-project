@@ -5,16 +5,21 @@
     "body": [
       "//Next, React (core node_modules) imports must be placed here",
       "",
-      "//Fetchers must be imported here",
-      "//import useFETCHER from '../PATH/TO/tools/useFETCHER'",
+      "//import STORE from '@/store'",
       "",
-      "//Layout must be imported here",
-      "//import LAYOUT from '../PATH/TO/layouts/LAYOUT'",
+      "//import LAYOUT from '@/layouts'",
       "",
-      "//Component must be imported here",
-      "//import COMPONENT from '../PATH/TO/components/COMPONENT'",
+      "//import VIEWS from '@/views'",
       "",
-      "const ${TM_DIRECTORY/^.+\\/(.*)$/${1:/capitalize}/}${2}Page = (props) => {",
+      "//import useFETCHER from '@/tools'",
+      "",
+      "//import COMPOSITES from '@/composites'",
+      "",
+      "//import COMPONENT from '@/components'",
+      "",
+      "//import styles from './${TM_DIRECTORY/^.+\\/(.*)$/$1/}.module.scss'",
+      "",
+      "const ${TM_DIRECTORY/^.+\\/(.*)$/${1:/pascalcase}/}${2}Page = (props) => {",
       "\treturn (",
       "\t\t<main>",
       "\t\t\t",
@@ -22,7 +27,7 @@
       "\t)",
       "};",
       "",
-      "export default ${TM_DIRECTORY/^.+\\/(.*)$/${1:/capitalize}/}${2}Page;"
+      "export default ${TM_DIRECTORY/^.+\\/(.*)$/${1:/pascalcase}/}${2}Page;"
     ],
     "description": "Creates a Next Page"
   }

@@ -2,7 +2,7 @@
 import { useContext } from "react";
 
 // IMPORTING THEME CONTEXT FROM STORE
-import ThemeContext from "../../store/ThemeContext";
+import ThemeContext from "@/store/ThemeContext";
 
 const ThemeToggler = (props) => {
   const { toggleDarkTheme } = useContext(ThemeContext);

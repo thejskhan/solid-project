@@ -5,7 +5,7 @@
 		"body": [
 			"//SWR & 'FETCHER UTILITY' IMPORTS",
 			"import useSWR from 'swr';",
-            "import { getFetcher } from '../utils/fetchers';",
+            "import { getFetcher } from '@/utils/fetchers';",
 			"",
 			"//Others must be imported here",
 			"",
