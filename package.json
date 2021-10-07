@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@typescript-eslint/parser": "^4.31.2",
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "cors": "^2.8.5",
     "framer-motion": "^4.1.17",
     "lodash": "^4.17.21",
