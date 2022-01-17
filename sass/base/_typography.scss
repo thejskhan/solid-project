@@ -2,7 +2,7 @@
 body {
   font-size: 1.6rem; //16px;
   font-family: $font-sans;
-  font-weight: 300;
+  font-weight: 400;
 
   @include respondMax(sm) {
     font-weight: 400;
@@ -14,15 +14,18 @@ h2,
 h3,
 h4,
 li,
-p {
+p,
+code {
   margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 :where(h1) {
-  font-size: 2.25em;
-  font-weight: 400;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+  font-size: 4em;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  text-transform: capitalize;
 
   @include baseThemify() {
     color: has(clr-h1);
@@ -34,8 +37,9 @@ p {
 }
 
 :where(h2) {
-  font-size: 1.5em;
-  font-weight: 400;
+  font-size: 2.56em;
+  letter-spacing: -0.016em;
+  font-weight: 700;
   text-transform: capitalize;
 
   @include baseThemify() {
@@ -44,9 +48,10 @@ p {
 }
 
 :where(h3) {
-  font-size: 1em;
-  font-weight: 400;
-  text-transform: uppercase;
+  font-size: 1.6em;
+  font-weight: 600;
+  letter-spacing: -0.008em;
+  text-transform: capitalize;
 
   @include baseThemify() {
     color: has(clr-h3);
@@ -54,11 +59,24 @@ p {
 }
 
 :where(h4) {
-  font-size: 1em;
-  font-weight: 400;
+  font-size: 1.2em;
+  font-weight: 700;
+  letter-spacing: -0.032em;
   text-transform: capitalize;
 
   @include baseThemify() {
     color: has(clr-h4);
   }
+}
+
+:where(p) {
+  line-height: 1.6em;
+  font-weight: 400;
+  letter-spacing: -0.016em;
+}
+
+:where(code) {
+  font-weight: 600;
+  font-size: 0.95em;
+  font-family: $font-mono;
 }

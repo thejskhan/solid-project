@@ -1,0 +1,19 @@
+@import "global";
+
+.container {
+  width: 90%;
+  max-width: has(sm);
+}
+
+.showcase {
+  box-sizing: border-box;
+  border: 0.1rem solid transparent;
+  border-radius: 0.5em;
+  width: 100%;
+  padding: 2em;
+
+  @include themify() {
+    border-color: has(clr-highlight-bg);
+    background-color: has(clr-bg-1up);
+  }
+}

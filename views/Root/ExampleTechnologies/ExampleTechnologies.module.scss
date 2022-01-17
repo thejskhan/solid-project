@@ -1,0 +1,6 @@
+@import "global";
+
+.container {
+  width: 90%;
+  max-width: has(sm);
+}

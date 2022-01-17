@@ -7,13 +7,15 @@ html,
 body {
   margin: 0;
   padding: 0;
-  
-  transition: background-color .1s;
+
+  transition: background-color 0.1s;
 }
 
 ::selection {
-  color: $clr-primary;
-  background-color: #000;
+  @include baseThemify() {
+    color: has(clr-select);
+    background-color: has(clr-select-bg);
+  }
 }
 
 :where(input, textarea) {
@@ -24,24 +26,44 @@ body {
 }
 
 :where(button) {
+  box-sizing: border-box;
   border: 0.1rem solid transparent;
   cursor: pointer;
+  padding: 0.8em 1.2em;
+  border-radius: 0.5em;
 
-  @include baseThemify() {
-    color: has(clr-text-inverse);
-    background-color: has(clr-bg-inverse);
+  color: $clr-neutral-3;
+  background-color: rgba($color: $clr-neutral-8, $alpha: 0.9);
+
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 1rem 1rem -0.5rem;
+
+  &:hover {
+    background-color: rgba($color: $clr-neutral-8, $alpha: 1);
+    color: $clr-neutral-3;
+  }
+
+  &:active {
+    background-color: rgba($color: $clr-neutral-8, $alpha: 0.8);
   }
 }
 
-:where(button:focus, a:focus) {
-  outline: 0 none;
+:where(button:focus) {
   @include baseThemify() {
-    border-color: has(clr-bg-inverse);
+    outline: 0.2rem solid rgba($color: has(clr-bg-inverse), $alpha: 0.3);
+  }
+}
+
+a:focus {
+  outline: none;
+  @include baseThemify() {
+    color: has(clr-primary);
   }
 }
 
 :where(textarea:focus, input:focus, input[type]:focus, .uneditable-input:focus) {
-  border-color: $clr-primary;
+  @include baseThemify() {
+    border-color: has(clr-primary);
+  }
   outline: 0 none;
 }
 
@@ -50,4 +72,48 @@ body {
   @include baseThemify() {
     color: has(clr-text-lc);
   }
+}
+
+:where(ul) {
+  margin: 0;
+  padding: 0;
+  list-style-position: inside;
+}
+
+:where(a) {
+  @include baseThemify() {
+    color: has(clr-link);
+  }
+  text-decoration: none;
+
+  &:hover {
+    @include baseThemify() {
+      color: has(clr-highlight-bg);
+    }
+  }
+}
+
+:where(code) {
+  @include baseThemify() {
+    color: has(clr-highlight);
+    background-color: has(clr-highlight-bg);
+  }
+
+  border-radius: 0.4rem;
+  padding: 0 0.4em;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 0.8rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: inherit;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $clr-primary-mid;
 }

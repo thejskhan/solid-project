@@ -96,7 +96,7 @@ CreateComponentTo() {
         PrintTo $1
     fi
 
-    PrintTo $1 "import styles from './$2.module.scss'"
+    PrintTo $1 "import styles from './$(echo ${2:0:1} | tr 'a-z' 'A-Z')${2:1}.module.scss'"
     PrintTo $1
 
     
@@ -198,7 +198,8 @@ then
     componentName=$2
     componentDirName=pages/$componentName
     componentJSDirName=$componentDirName/index.jsx
-    componentSCSSDirName=$componentDirName/$componentName.module.scss
+    componentSCSSName=$(echo ${2:0:1} | tr 'a-z' 'A-Z')${2:1}
+    componentSCSSDirName=$componentDirName/$componentSCSSName.module.scss
 
 
     if [ ! -d $componentDirName ]

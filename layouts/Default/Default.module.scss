@@ -5,5 +5,7 @@
   flex-direction: column;
   align-items: center;
 
-  width: 100%;
+  :where(main) {
+    width: 100%;
+  }
 }

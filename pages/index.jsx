@@ -1,24 +1,42 @@
-import ThemeToggler from "@/components/ThemeToggler";
+import Head from "next/head";
+import { useRef, Fragment } from "react";
+
+import scrollTo from "@/utils/functions/scrollTo";
+
+import DefaultLayout from "@/layouts/Default";
+
+import ExampleLanding from "@/views/Root/ExampleLanding";
+import ExampleTypography from "@/views/Root/ExampleTypography";
+import ExampleTechnologies from "@/views/Root/ExampleTechnologies";
 
 import styles from "./Root.module.scss";
 
 const RootPage = (props) => {
+  const ref = useRef(null);
+
+  const handleClick = () => {
+    // 2 times Navbar Height
+    scrollTo(ref, 140);
+  };
+
   return (
-    <main className={styles.container}>
-      <h1>Hello World!</h1>
-      <ThemeToggler />
-      <h1>THIS IS HEADING 1</h1>
-      <h2>THIS IS HEADING 2</h2>
-      <h3>THIS IS HEADING 3</h3>
-      <h4>THIS IS HEADING 4</h4>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro, incidunt
-        vitae! Voluptates minus quia dignissimos voluptatum fugiat eveniet est
-        voluptatibus sed, inventore deserunt, totam non id? Ipsum natus dolor
-        error.
-      </p>
-    </main>
+    <Fragment>
+      <Head>
+        {/* TITLE */}
+        <title>Solid Project 2.0</title>
+        <meta property="og:title" content="Solid Project 2.0" key="title" />
+      </Head>
+
+      <main className={styles.container}>
+        <ExampleLanding onClick={handleClick} themeInverse />
+        <ExampleTypography ref={ref} />
+        <ExampleTechnologies />
+      </main>
+    </Fragment>
   );
 };
+
+// LAYOUT DECLARATION
+RootPage.Layout = DefaultLayout;
 
 export default RootPage;
