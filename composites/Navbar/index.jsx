@@ -1,10 +1,10 @@
 //Next, React (core node_modules) imports must be placed here
-import Link from "next/link";
 import { useEffect, useRef } from "react";
 
 //import STORE from '@/store'
 
 //import COMPONENT from '@/components'
+import Link from "@/components/Link";
 import Logo from "@/components/Logo";
 
 import styles from "./Navbar.module.scss";
@@ -27,25 +27,17 @@ const Navbar = (props) => {
     <header ref={ref} className={styles.container}>
       <nav className={styles.innerContainer}>
         <Link href="/">
-          <a>
-            <Logo size={16} />
-          </a>
+          <Logo size={16} />
         </Link>
 
         <ul className={styles.menu}>
           <li className={styles.menuItem}>
-            <Link href="/">
-              <a className={styles.menuLink}>Link 1</a>
-            </Link>
-          </li>
-          <li className={styles.menuItem}>
-            <Link href="/">
-              <a className={styles.menuLink}>Link 2</a>
-            </Link>
-          </li>
-          <li className={styles.menuItem}>
-            <Link href="/">
-              <a className={styles.menuLink}>Link 3</a>
+            <Link
+              className={styles.menuLink}
+              activeClassName={styles.menuLink__active}
+              href="/design-system"
+            >
+              Design System
             </Link>
           </li>
         </ul>
