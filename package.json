@@ -12,29 +12,25 @@
     "generate": "bin/generate.sh"
   },
   "dependencies": {
-    "@typescript-eslint/parser": "^5.10.0",
-    "axios": "^0.25.0",
-    "cors": "^2.8.5",
-    "framer-motion": "^6.2.1",
+    "@typescript-eslint/parser": "^5.12.1",
+    "axios": "^0.26.0",
+    "framer-motion": "^6.2.8",
     "lodash": "^4.17.21",
-    "mongodb": "^4.3.1",
-    "mongoose": "^6.1.7",
-    "next": "^12.0.8",
-    "next-auth": "^4.1.2",
-    "plaiceholder": "^2.2.0",
+    "next": "^12.1.0",
+    "plaiceholder": "^2.3.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-intersection-observer": "^8.33.1",
-    "sass": "^1.49.0",
-    "sharp": "^0.29.3",
+    "sass": "^1.49.9",
+    "sharp": "^0.30.1",
     "smoothscroll-polyfill": "^0.4.4",
     "styled-components": "^5.3.3",
     "styled-icons": "^10.45.0",
-    "swr": "^1.1.2"
+    "swr": "^1.2.2"
   },
   "devDependencies": {
-    "babel-plugin-styled-components": "^2.0.2",
-    "eslint": "^8.7.0",
-    "eslint-config-next": "12.0.8"
+    "babel-plugin-styled-components": "^2.0.6",
+    "eslint": "^8.10.0",
+    "eslint-config-next": "12.1.0"
   }
 }
