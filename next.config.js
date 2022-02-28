@@ -13,4 +13,7 @@ module.exports = {
     useSuspense: false,
     wait: true,
   },
+  compiler: {
+    styledComponents: true,
+  },
 };
