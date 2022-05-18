@@ -15,5 +15,7 @@ module.exports = {
   },
   compiler: {
     styledComponents: true,
+    removeConsole: true,
   },
+  swcMinify: true,
 };

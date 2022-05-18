@@ -13,9 +13,9 @@
   width: 0.5em;
   height: 2.5em;
 
-  @include themify() {
-    background-color: has(clr-primary);
-  }
+  // @include themify() {
+  //   background-color: has(clr-primary);
+  // }
   margin-right: 0.5em;
 }
 
@@ -26,13 +26,13 @@
   font-weight: 500;
   text-transform: uppercase;
 
-  @include themify() {
-    color: has(clr-bg-inverse);
-  }
+  // @include themify() {
+  //   color: has(clr-bg-inverse);
+  // }
 
   span:first-of-type {
-    @include themify() {
-      color: has(clr-primary);
-    }
+    // @include themify() {
+    //   color: has(clr-primary);
+    // }
   }
 }

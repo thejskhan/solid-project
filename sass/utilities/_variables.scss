@@ -19,18 +19,6 @@ $breakpoints: (
 
 // COLORS
 // DARK MODE COLORS
-$clr-primary-dark: #03c4a1;
-$clr-secondary-dark: #f69765;
-
-// MIDDLE COLORS
-$clr-primary-mid: #158ec6;
-
-// LIGHT MODE COLORS
-// $clr-primary-light: #34a0a4;
-$clr-primary-light: #2657eb;
-
-// $clr-secondary-light: #0087e9;
-$clr-secondary-light: #449e68;
 
 // GREYSCALE (Darkest to Lightest)
 $clr-neutral-0: #1f242c;
@@ -45,94 +33,6 @@ $clr-neutral-8: #efefef;
 
 // THEMES
 $themes: (
-  dark: (
-    // DARK PRIMARY COLOR
-    clr-primary: $clr-primary-dark,
-    // DARK HIGHLIGHT THEME
-    clr-highlight: $clr-neutral-7,
-    clr-highlight-bg: $clr-neutral-3,
-    // DARK SELECTION THEME
-    clr-select: $clr-primary-dark,
-    clr-select-bg: #000,
-    // DARK BACKGROUND THEME
-    clr-bg: $clr-neutral-1,
-    clr-bg-inverse: $clr-neutral-8,
-    clr-bg-1up: $clr-neutral-0,
-    // DARK TYPOGRAPHY THEME
-    clr-h1: $clr-neutral-8,
-    clr-h2: $clr-neutral-8,
-    clr-h3: $clr-neutral-8,
-    clr-h3-inverse: $clr-neutral-1,
-    clr-h4: $clr-neutral-6,
-    clr-h4-inverse: $clr-neutral-4,
-    // DARK TEXT THEME
-    clr-text: $clr-neutral-7,
-    clr-text-inverse: $clr-neutral-3,
-    clr-text-lc: $clr-neutral-3,
-    // DARK LINK THEME
-    clr-link: $clr-secondary-dark,
-    // clr-link: $clr-neutral-6,
-    // DARK CTA BUTTON THEME
-    clr-cta: $clr-primary-dark,
-    // DARK BACKGROUND GRADIENT
-    bg-gradient:
-      radial-gradient(
-        circle at top left,
-        rgba(
-            $color: $clr-primary-mid,
-            $alpha: 0.32,
-          )
-          0%,
-        rgba(
-            $color: $clr-neutral-1,
-            $alpha: 1,
-          )
-          100%
-      ),
-  ),
-  light: (
-    // DARK PRIMARY COLOR
-    clr-primary: $clr-primary-light,
-    // LIGHT HIGHLIGHT THEME
-    clr-highlight: $clr-neutral-3,
-    clr-highlight-bg: $clr-neutral-7,
-    // LIGHT SELECTION THEME
-    clr-select: #fff,
-    clr-select-bg: $clr-primary-light,
-    // LIGHT BACKGROUND THEME
-    clr-bg: $clr-neutral-8,
-    clr-bg-inverse: $clr-neutral-1,
-    clr-bg-1up: #fff,
-    // LIGHT TYPOGRAPHY THEME
-    clr-h1: $clr-neutral-1,
-    clr-h2: $clr-neutral-1,
-    clr-h3: $clr-neutral-1,
-    clr-h3-inverse: $clr-neutral-8,
-    clr-h4: $clr-neutral-4,
-    clr-h4-inverse: $clr-neutral-6,
-    // LIGHT TEXT THEME
-    clr-text: $clr-neutral-3,
-    clr-text-inverse: $clr-neutral-7,
-    clr-text-lc: $clr-neutral-7,
-    // LIGHT LINK THEME
-    clr-link: $clr-primary-light,
-    // clr-link: $clr-neutral-6,
-    // LIGHT CTA BUTTON THEME
-    clr-cta: $clr-primary-light,
-    // LIGHT BACKGROUND GRADIENT
-    bg-gradient:
-      radial-gradient(
-        circle at bottom right,
-        rgba(
-            $color: $clr-primary-mid,
-            $alpha: 0.16,
-          )
-          0%,
-        rgba(
-            $color: $clr-neutral-8,
-            $alpha: 1,
-          )
-          100%
-      ),
-  ),
+  dark: (),
+  light: (),
 );

@@ -1,4 +1,11 @@
 // NORMALIZATION
+// NORMALIZATION
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html {
   font-size: 62.5%; //1rem = 10px;
 }
@@ -12,66 +19,33 @@ body {
 }
 
 ::selection {
-  @include baseThemify() {
-    color: has(clr-select);
-    background-color: has(clr-select-bg);
-  }
+  // @include baseThemify() {
+  //   color: has(clr-select);
+  //   background-color: has(clr-select-bg);
+  // }
 }
 
 :where(input, textarea) {
   border: 0.1rem solid $clr-neutral-1;
-  @include baseThemify() {
-    color: has(clr-text);
-  }
 }
 
 :where(button) {
-  box-sizing: border-box;
-  border: 0.1rem solid transparent;
-  cursor: pointer;
-  padding: 0.8em 1.2em;
-  border-radius: 0.5em;
-
-  color: $clr-neutral-3;
-  background-color: rgba($color: $clr-neutral-8, $alpha: 0.9);
-
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 1rem 1rem -0.5rem;
-
-  &:hover {
-    background-color: rgba($color: $clr-neutral-8, $alpha: 1);
-    color: $clr-neutral-3;
-  }
-
-  &:active {
-    background-color: rgba($color: $clr-neutral-8, $alpha: 0.8);
-  }
 }
 
 :where(button:focus) {
-  @include baseThemify() {
-    outline: 0.2rem solid rgba($color: has(clr-bg-inverse), $alpha: 0.3);
-  }
+  outline: 0;
 }
 
 a:focus {
   outline: none;
-  @include baseThemify() {
-    color: has(clr-primary);
-  }
 }
 
 :where(textarea:focus, input:focus, input[type]:focus, .uneditable-input:focus) {
-  @include baseThemify() {
-    border-color: has(clr-primary);
-  }
-  outline: 0 none;
+  outline: none;
 }
 
 :where(input::-webkit-input-placeholder, textarea::-webkit-input-placeholder) {
   text-transform: capitalize;
-  @include baseThemify() {
-    color: has(clr-text-lc);
-  }
 }
 
 :where(ul) {
@@ -81,39 +55,25 @@ a:focus {
 }
 
 :where(a) {
-  @include baseThemify() {
-    color: has(clr-link);
-  }
   text-decoration: none;
-
-  &:hover {
-    @include baseThemify() {
-      color: has(clr-highlight-bg);
-    }
-  }
 }
 
 :where(code) {
-  @include baseThemify() {
-    color: has(clr-highlight);
-    background-color: has(clr-highlight-bg);
-  }
-
   border-radius: 0.4rem;
   padding: 0 0.4em;
 }
 
-/* width */
-::-webkit-scrollbar {
-  width: 0.8rem;
-}
+// /* width */
+// ::-webkit-scrollbar {
+//   width: 0.8rem;
+// }
 
-/* Track */
-::-webkit-scrollbar-track {
-  background: inherit;
-}
+// /* Track */
+// ::-webkit-scrollbar-track {
+//   background: inherit;
+// }
 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: $clr-primary-mid;
-}
+// /* Handle */
+// ::-webkit-scrollbar-thumb {
+//   background: $clr-primary-mid;
+// }

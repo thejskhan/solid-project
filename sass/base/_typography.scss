@@ -26,11 +26,6 @@ code {
   font-weight: 700;
   letter-spacing: -0.04em;
   text-transform: capitalize;
-
-  @include baseThemify() {
-    color: has(clr-h1);
-  }
-
   @include respondMax(sm) {
     letter-spacing: normal;
   }
@@ -41,10 +36,6 @@ code {
   letter-spacing: -0.016em;
   font-weight: 700;
   text-transform: capitalize;
-
-  @include baseThemify() {
-    color: has(clr-h2);
-  }
 }
 
 :where(h3) {
@@ -52,10 +43,6 @@ code {
   font-weight: 600;
   letter-spacing: -0.008em;
   text-transform: capitalize;
-
-  @include baseThemify() {
-    color: has(clr-h3);
-  }
 }
 
 :where(h4) {
@@ -63,10 +50,6 @@ code {
   font-weight: 700;
   letter-spacing: -0.032em;
   text-transform: capitalize;
-
-  @include baseThemify() {
-    color: has(clr-h4);
-  }
 }
 
 :where(p) {

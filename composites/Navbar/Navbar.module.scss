@@ -19,9 +19,9 @@
 }
 
 .defaultBackground {
-  @include themify() {
-    background: rgba($color: has(clr-bg-1up), $alpha: 0.8);
-  }
+  // @include themify() {
+  //   background: rgba($color: has(clr-bg-1up), $alpha: 0.8);
+  // }
 }
 
 .innerContainer {
@@ -62,9 +62,10 @@
     padding: 1.2em 0;
   }
 
-  @include themify() {
-    color: has(clr-text);
-  }
+  // @include themify() {
+  //   color: has(clr-text);
+  // }
+
   text-decoration: none;
 
   &::after {
@@ -80,9 +81,9 @@
     max-width: 0;
     height: 0.1rem;
 
-    @include themify() {
-      background-color: has(clr-primary);
-    }
+    // @include themify() {
+    //   background-color: has(clr-primary);
+    // }
 
     transition: max-width 0.2s ease-in-out;
   }
@@ -92,14 +93,14 @@
   }
 
   &:hover {
-    @include themify() {
-      color: has(clr-primary);
-    }
+    // @include themify() {
+    //   color: has(clr-primary);
+    // }
   }
 
   &:focus {
-    @include themify() {
-      color: has(clr-primary);
-    }
+    // @include themify() {
+    //   color: has(clr-primary);
+    // }
   }
 }
