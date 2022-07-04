@@ -39,19 +39,13 @@ WarnFilesExist() {
     fi
 }
 
+WarnProvideName() {
+    echo -e "${bold}${magenta}Please provide a name${reset} for ${underline}$1${reset}"
+}
+
 AnnounceCreation() {
     typeName=$(echo $1 | tr [:lower:] [:upper:])
     echo -e "${bold}${green}CREATING THE $typeName ${yellow}$2${reset} \n@ ${underline}$3${reset}\n"
-}
-
-CreateScssTo() {
-    touch $1
-
-    PrintTo $1 "@import 'global';"
-    PrintTo $1
-    PrintTo $1 ".container {"
-    PrintTo $1
-    PrintTo $1 "}"
 }
 
 CreateComponentTo() {
@@ -95,8 +89,7 @@ CreateComponentTo() {
         PrintTo $1 "//import COMPONENT from '@/components'"
         PrintTo $1
     fi
-
-    PrintTo $1 "import styles from './$(echo ${2:0:1} | tr 'a-z' 'A-Z')${2:1}.module.scss'"
+    
     PrintTo $1
 
     
@@ -114,9 +107,9 @@ CreateComponentTo() {
 
     if [ "$3" = "page" ]
     then
-        PrintTo $1 "\t\t <main className={styles.container}>"
+        PrintTo $1 "\t\t <main className=\"\">"
     else
-        PrintTo $1 "\t\t <div className={styles.container}>"
+        PrintTo $1 "\t\t <div className=\"\">"
     fi
 
     if [ "$3" = "layout" ]
@@ -170,10 +163,15 @@ CreateStoreTo() {
 # GENERATE LAYOUT
 if [ "$1" = "layout" ]
 then
+    if [ "$2" = "" ]
+    then
+        WarnProvideName "layout"
+        exit 1
+    fi
+
     componentName=$(echo ${2:0:1} | tr 'a-z' 'A-Z')${2:1}
     componentDirName=layouts/$componentName
     componentJSDirName=$componentDirName/index.jsx
-    componentSCSSDirName=$componentDirName/$componentName.module.scss
 
     if [ ! -d $componentDirName ]
     then
@@ -181,25 +179,27 @@ then
         mkdir $componentDirName
     fi
 
-    if [[ ! -f $componentJSDirName && ! -f $componentSCSSDirName ]]
+    if [[ ! -f $componentJSDirName ]]
     then
-        AnnounceCreation $1 SCSS $componentSCSSDirName
-        CreateScssTo $componentSCSSDirName layout
 
         AnnounceCreation $1 COMPONENT $componentJSDirName
         CreateComponentTo $componentJSDirName $componentName layout
     else
-        WarnFilesExist $componentJSDirName $componentSCSSDirName
+        WarnFilesExist $componentJSDirName
     fi
 
 # GENERATE PAGE
 elif [ "$1" = "page" ]
 then
+    if [ "$2" = "" ]
+    then
+        WarnProvideName "page"
+        exit 1
+    fi
+
     componentName=$2
     componentDirName=pages/$componentName
     componentJSDirName=$componentDirName/index.jsx
-    componentSCSSName=$(echo ${2:0:1} | tr 'a-z' 'A-Z')${2:1}
-    componentSCSSDirName=$componentDirName/$componentSCSSName.module.scss
 
 
     if [ ! -d $componentDirName ]
@@ -208,15 +208,12 @@ then
         mkdir $componentDirName
     fi
 
-    if [[ ! -f $componentJSDirName && ! -f $componentSCSSDirName ]]
+    if [[ ! -f $componentJSDirName ]]
     then
-        AnnounceCreation $1 SCSS $componentSCSSDirName
-        CreateScssTo $componentSCSSDirName page
-
         AnnounceCreation $1 COMPONENT $componentJSDirName
         CreateComponentTo $componentJSDirName $componentName page
     else
-        WarnFilesExist $componentJSDirName $componentSCSSDirName
+        WarnFilesExist $componentJSDirName
     fi
 
 # GENERATE VIEW
@@ -227,7 +224,6 @@ then
     componentParentDirName=views/$componentParentName
     componentDirName=$componentParentDirName/$componentName
     componentJSDirName=$componentDirName/index.jsx
-    componentSCSSDirName=$componentDirName/$componentName.module.scss
 
     if [ ! -d $componentParentDirName ]
     then
@@ -241,24 +237,26 @@ then
         mkdir $componentDirName
     fi
 
-    if [[ ! -f $componentJSDirName && ! -f $componentSCSSDirName ]]
+    if [[ ! -f $componentJSDirName ]]
     then
-        AnnounceCreation $1 SCSS $componentSCSSDirName
-        CreateScssTo $componentSCSSDirName view
-
         AnnounceCreation $1 COMPONENT $componentJSDirName
         CreateComponentTo $componentJSDirName $componentName view
     else
-        WarnFilesExist $componentJSDirName $componentSCSSDirName
+        WarnFilesExist $componentJSDirName
     fi
 
 # GENERATE COMPOSITE
 elif [ "$1" = "composite" ]
 then
+    if [ "$2" = "" ]
+    then
+        WarnProvideName "composite"
+        exit 1
+    fi
+
     componentName=$(echo ${2:0:1} | tr 'a-z' 'A-Z')${2:1}
     componentDirName=composites/$componentName
     componentJSDirName=$componentDirName/index.jsx
-    componentSCSSDirName=$componentDirName/$componentName.module.scss
 
     if [ ! -d $componentDirName ]
     then
@@ -266,25 +264,27 @@ then
         mkdir $componentDirName
     fi
 
-    if [[ ! -f $componentJSDirName && ! -f $componentSCSSDirName ]]
+    if [[ ! -f $componentJSDirName ]]
     then
-        AnnounceCreation $1 SCSS $componentSCSSDirName
-        CreateScssTo $componentSCSSDirName composite
-
         AnnounceCreation $1 COMPONENT $componentJSDirName
         CreateComponentTo $componentJSDirName $componentName composite
     else
-        WarnFilesExist $componentJSDirName $componentSCSSDirName
+        WarnFilesExist $componentJSDirName
     fi
 
 
 # GENERATE COMPONENT
 elif [ "$1" = "component" ]
 then
+    if [ "$2" = "" ]
+    then
+        WarnProvideName "component"
+        exit 1
+    fi
+
     componentName=$(echo ${2:0:1} | tr 'a-z' 'A-Z')${2:1}
     componentDirName=components/$componentName
     componentJSDirName=$componentDirName/index.jsx
-    componentSCSSDirName=$componentDirName/$componentName.module.scss
 
     if [ ! -d $componentDirName ]
     then
@@ -292,11 +292,8 @@ then
         mkdir $componentDirName
     fi
 
-    if [[ ! -f $componentJSDirName && ! -f $componentSCSSDirName ]]
+    if [[ ! -f $componentJSDirName ]]
     then
-        AnnounceCreation $1 SCSS $componentSCSSDirName
-        CreateScssTo $componentSCSSDirName component
-
         AnnounceCreation $1 COMPONENT $componentJSDirName
         CreateComponentTo $componentJSDirName $componentName component
     else
@@ -305,6 +302,12 @@ then
 
 elif [ "$1" = "store" ]
 then
+    if [ "$2" = "" ]
+    then
+        WarnProvideName "store"
+        exit 1
+    fi
+
     componentName=$(echo ${2:0:1} | tr 'a-z' 'A-Z')${2:1}
     componentJSDirName=store/$componentName.jsx
 
@@ -316,75 +319,13 @@ then
         WarnFilesExist $componentJSDirName
     fi
 
-# GENERATE API
-elif [ "$1" = "api" ]
-then
-    componentNameConstructor=$(echo ${2:0:1} | tr 'a-z' 'A-Z')${2:1}
-    componentName=$componentNameConstructor
-
-    if [ ! -d "pages/api/$componentName" ]
-    then
-        echo -e "${bold}${green}CREATING THE API ${yellow}DIRECTORY${reset} \tat ${underline}pages/api/$componentName${reset}"
-        mkdir pages/api/$componentName
-    fi
-
-    if [ ! -f "pages/api/$componentName/index.js" ]
-    then
-        echo -e "${bold}${green}CREATING THE API ${yellow}HANDLER${reset} \tat ${underline}pages/api/$componentName/index.js${reset}"
-        touch pages/api/$componentName/index.js
-
-        echo "//IMPORT UTILITIES HERE" >> pages/api/$componentName/index.js
-        echo "" >> pages/api/$componentName/index.js
-        echo "//IMPORT MODELS HERE" >> pages/api/$componentName/index.js
-        echo "" >> pages/api/$componentName/index.js
-        echo "export default async (req, res) => {" >> pages/api/$componentName/index.js
-        echo "" >> pages/api/$componentName/index.js
-        echo -e "\tif (req.method === 'GET') {" >> pages/api/$componentName/index.js
-        echo -e "\t\t//return res.status(200).send()" >> pages/api/$componentName/index.js
-        echo -e "\t}" >> pages/api/$componentName/index.js
-        echo "" >> pages/api/$componentName/index.js
-        echo -e "\tif (req.method === 'POST') {" >> pages/api/$componentName/index.js
-        echo -e "\t\t//return res.status(200).send()" >> pages/api/$componentName/index.js
-        echo -e "\t}" >> pages/api/$componentName/index.js
-        echo "}" >> pages/api/$componentName/index.js
-
-    else
-        echo "${bold}${magenta}FILE ALREADY EXIST${reset} at ${underline}pages/api/$componentName/index.js${reset}"
-    fi
-
-# GENERATE MODEL
-elif [ "$1" = "model" ]
-then
-    componentNameConstructor=$(echo ${2:0:1} | tr 'a-z' 'A-Z')${2:1}
-    componentName=$componentNameConstructor
-
-    if [ ! -f "models/$componentName.js" ]
-    then
-        echo -e "${bold}${green}CREATING THE MODEL ${yellow}FILE${reset} \tat ${underline}models/$componentName${reset}"
-        touch models/$componentName.js
-
-        echo "// import { connectToDatabase } from '../utils/database';" >> models/$componentName.js
-        echo "" >> models/$componentName.js
-        echo "class $componentName {" >> models/$componentName.js
-        echo -e "\tconstructor() {" >> models/$componentName.js
-        echo -e "\t}" >> models/$componentName.js
-        echo "}" >> models/$componentName.js
-        echo "" >> models/$componentName.js
-        echo "export default $componentName;" >> models/$componentName.js
-
-    else
-        echo "${bold}${magenta}FILE ALREADY EXIST${reset} at ${underline}models/$componentName.js${reset}"
-    fi
-
 # HELP
 else
-    echo "${cyan}${bold}SOLID FRAMEWORKS${reset} ${underline}Generate${reset}"
+    echo "${cyan}${bold}Solid Project${reset} ${underline}Generate${reset}"
     echo -e "${green}${bold}npm run ${underline}generate${reset} ${bold}store${reset}\t\t ${yellow}StoreName${reset}"
     echo -e "${green}${bold}npm run ${underline}generate${reset} ${bold}layout${reset}\t\t ${yellow}LayoutName${reset}"
     echo -e "${green}${bold}npm run ${underline}generate${reset} ${bold}page${reset}\t\t ${yellow}PageName${reset}"
     echo -e "${green}${bold}npm run ${underline}generate${reset} ${bold}view${reset}\t\t PageName\t ${yellow}ViewName${reset}"
     echo -e "${green}${bold}npm run ${underline}generate${reset} ${bold}composite${reset}\t ${yellow}ComponentName${reset}"
     echo -e "${green}${bold}npm run ${underline}generate${reset} ${bold}component${reset}\t ${yellow}ComponentName${reset}"
-    echo -e "${green}${bold}npm run ${underline}generate${reset} ${bold}api${reset}\t\t ${yellow}APIName${reset}"
-    echo -e "${green}${bold}npm run ${underline}generate${reset} ${bold}model${reset}\t\t ${yellow}ModelName${reset}"
 fi
