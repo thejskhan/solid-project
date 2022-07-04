@@ -7,7 +7,7 @@ const RootPage = (props) => {
     <main className="absolute w-full pt-16 h-screen flex flex-col items-center justify-center bg-gradient-to-br from-teal-100 to-slate-50 dark:from-teal-900 dark:to-slate-900">
       <Head>
         {/* TITLE */}
-        <title>Solid Project 2.0</title>
+        <title>Solid Project 2.5</title>
         <meta property="og:title" content="Solid Project 2.5" key="title" />
       </Head>
 
