@@ -12,6 +12,8 @@ const RootPage = (props) => {
         <title>Solid Project 2.0</title>
         <meta property="og:title" content="Solid Project 2.0" key="title" />
       </Head>
+
+      <div className="py-4"></div>
     </main>
   );
 };
