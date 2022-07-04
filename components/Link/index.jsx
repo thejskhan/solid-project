@@ -3,8 +3,6 @@ import { useRouter } from "next/router";
 import NextLink from "next/link";
 //import STORE from '@/store'
 
-import styles from "./Link.module.scss";
-
 const Link = ({ href, className, activeClassName, children, ...props }) => {
   const { pathname } = useRouter();
 

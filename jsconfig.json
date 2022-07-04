@@ -1,19 +1,18 @@
 {
-    "compilerOptions": {
-      "baseUrl": ".",
-      "paths": {
-        "@/components/*": ["components/*"],
-        "@/composites/*": ["composites/*"],
-        "@/layouts/*": ["layouts/*"],
-        "@/models/*": ["models/*"],
-        "@/public/*": ["public/*"],
-        "@/sass/*": ["sass/*"],
-        "@/store/*": ["store/*"],
-        "@/tools/*": ["tools/*"],
-        "@/utils/*": ["utils/*"],
-        "@/views/*": ["views/*"]
-      }
-    },
-    "exclude": ["node_modules"]
-  }
-  
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/components/*": ["components/*"],
+      "@/composites/*": ["composites/*"],
+      "@/layouts/*": ["layouts/*"],
+      "@/models/*": ["models/*"],
+      "@/public/*": ["public/*"],
+      "@/styles/*": ["styles/*"],
+      "@/context/*": ["context/*"],
+      "@/tools/*": ["tools/*"],
+      "@/utils/*": ["utils/*"],
+      "@/views/*": ["views/*"]
+    }
+  },
+  "exclude": ["node_modules"]
+}

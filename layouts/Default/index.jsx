@@ -11,11 +11,9 @@ import Navbar from "@/composites/Navbar";
 
 //import COMPONENT from '@/components'
 
-import styles from "./Default.module.scss";
-
 const DefaultLayout = ({ children, ...props }) => {
   return (
-    <div className={styles.container}>
+    <div className="relative w-full px-4 flex flex-col items-center min-h-screen dark:bg-slate-900 bg-slate-50">
       <Navbar />
       {children}
     </div>

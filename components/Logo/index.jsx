@@ -2,13 +2,11 @@
 
 //import STORE from '@/store'
 
-import styles from "./Logo.module.scss";
-
 const Logo = ({ size, ...props }) => {
   return (
-    <div className={styles.container} style={{ fontSize: size }}>
-      <span className={styles.bar}></span>
-      <div className={`${styles.title} noselect`}>
+    <div className="flex dark:text-teal-500 text-slate-800 hover:text-teal-500">
+      <span className="w-2 mr-1 bg-current"></span>
+      <div className="font-mono flex flex-col uppercase font-semibold leading-4">
         <span>Solid</span>
         <span>Project</span>
       </div>

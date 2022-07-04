@@ -5,7 +5,7 @@ const ThemeContext = createContext({
   toggleDarkTheme: () => {},
 });
 
-export const ThemeContextProvider = (props) => {
+export const ThemeContextProvider = ({ children }) => {
   const [darkTheme, setDarkTheme] = useState(false);
 
   const toggleDarkTheme = () => {
@@ -16,7 +16,7 @@ export const ThemeContextProvider = (props) => {
 
   return (
     <ThemeContext.Provider value={context}>
-      {props.children}
+      <div className={darkTheme ? "dark" : "light"}>{children}</div>
     </ThemeContext.Provider>
   );
 };

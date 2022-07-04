@@ -1,42 +1,26 @@
 // IMPORTING USE CONTEXT FROM REACT TO USE STORE
 import { useContext, forwardRef } from "react";
 
-// IMPORTING STYLED COMPONENTS
-import styled from "styled-components";
-
 // IMPORTING THEME CONTEXT FROM STORE
-import ThemeContext from "@/store/ThemeContext";
+import ThemeContext from "context/ThemeContext";
 
 // IMPORTING ICON
-// import { DarkTheme } from "@styled-icons/fluentui-system-filled/DarkTheme";
 import { LightMode } from "@styled-icons/material/LightMode";
 import { DarkMode } from "@styled-icons/material/DarkMode";
 
-const StyledLightMode = styled(LightMode)`
-  height: 1.2em;
-  margin-right: 0.3em;
-`;
-
-const StyledDarkMode = styled(DarkMode)`
-  height: 1.2em;
-  margin-right: 0.3em;
-`;
-
-const ThemeToggler = forwardRef(function ThemeTogglerWithoutRef(props, ref) {
+const ThemeToggler = (props) => {
   const { darkTheme, toggleDarkTheme } = useContext(ThemeContext);
 
   return (
     <button
       onClick={toggleDarkTheme}
-      style={{ fontSize: props.size }}
-      className={props.className}
-      ref={ref}
+      className="flex items-center text-slate-700 dark:text-teal-500 gap-1 hover:text-teal-500 rounded-md shadow-md p-2 bg-teal-50 dark:bg-teal-900"
       aria-label="Toggle Theme"
     >
-      {darkTheme ? <StyledDarkMode /> : <StyledLightMode />}
+      {darkTheme ? <DarkMode className="w-6" /> : <LightMode className="w-6" />}
       Change Theme
     </button>
   );
-});
+};
 
 export default ThemeToggler;
