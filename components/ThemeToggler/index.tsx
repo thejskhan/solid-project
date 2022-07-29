@@ -5,10 +5,10 @@ import { useContext, forwardRef } from "react";
 import ThemeContext from "context/ThemeContext";
 
 // IMPORTING ICON
-import { LightMode } from "@styled-icons/material/LightMode";
-import { DarkMode } from "@styled-icons/material/DarkMode";
+import { SunIcon as LightMode } from "@heroicons/react/solid";
+import { MoonIcon as DarkMode } from "@heroicons/react/solid";
 
-const ThemeToggler = (props) => {
+const ThemeToggler = () => {
   const { darkTheme, toggleDarkTheme } = useContext(ThemeContext);
 
   return (
