@@ -2,7 +2,6 @@
 const nextConfig = {
   reactStrictMode: true,
   compiler: {
-    styledComponents: true,
     // removeConsole: true,
   },
   swcMinify: true,
