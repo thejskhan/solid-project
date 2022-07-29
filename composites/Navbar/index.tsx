@@ -7,7 +7,7 @@ import Link from "@/components/Link";
 import Logo from "@/components/Logo";
 import ThemeToggler from "@/components/ThemeToggler";
 
-const Navbar = (props) => {
+const Navbar = () => {
   return (
     <header className="z-50 w-full px-4 fixed flex flex-col items-center top-0 left-0">
       <nav className="w-full max-w-6xl flex justify-between items-center h-16">

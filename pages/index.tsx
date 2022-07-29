@@ -1,8 +1,9 @@
+import type { Page } from "@/types/page";
 import Head from "next/head";
 
 import DefaultLayout from "@/layouts/Default";
 
-const RootPage = (props) => {
+const RootPage: Page = () => {
   return (
     <main className="absolute w-full pt-16 h-screen flex flex-col items-center justify-center bg-gradient-to-br from-teal-100 to-slate-50 dark:from-teal-900 dark:to-slate-900">
       <Head>

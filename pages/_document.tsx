@@ -1,9 +1,9 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 
-class AppDocument extends Document {
+export default class AppDocument extends Document {
   render() {
     return (
-      <Html lang="en">
+      <Html>
         <Head>
           {/* IMPORTING TYPOGRAPHY */}
           <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -25,5 +25,3 @@ class AppDocument extends Document {
     );
   }
 }
-
-export default AppDocument;
