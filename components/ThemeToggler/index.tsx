@@ -5,8 +5,8 @@ import { useContext, forwardRef } from "react";
 import ThemeContext from "context/ThemeContext";
 
 // IMPORTING ICON
-import { SunIcon as LightMode } from "@heroicons/react/solid";
-import { MoonIcon as DarkMode } from "@heroicons/react/solid";
+import { SunIcon as LightMode } from "@heroicons/react/20/solid";
+import { MoonIcon as DarkMode } from "@heroicons/react/20/solid";
 
 const ThemeToggler = () => {
   const { darkTheme, toggleDarkTheme } = useContext(ThemeContext);
